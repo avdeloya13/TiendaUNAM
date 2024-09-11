@@ -1,5 +1,5 @@
 # TiendaUNAM
 
 Integrantes:
-- Valeria Deloya Andrade
+- Deloya Andrade Ana Valeria
 - Osorio Escandón Huriel
