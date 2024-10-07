@@ -1,0 +1,14 @@
+.body-content{
+    max-width: 1280px;
+    margin: auto;
+    margin-top: 16px;
+}
+
+.btn-primary{
+    float: right;
+    margin: 1rem;
+}
+
+.input-required{
+    color: red;
+}

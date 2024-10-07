@@ -1,13 +1,20 @@
 <!-- BODY CONTENT  -->
 
+<div class="body-content">
 
-  <div class="body-content">
-      <div class="card">
-        <div class="card-header">
-          <h3>Categorías</h3>
-        </div>
+  <div class="card">
+    <div class="card-header">
+      <h3>Categorías</h3>
+    </div>
 
+    <!-- CARD  -->
     <div class="card-body">
+      <!-- BOTON NUEVA CATEGORIA  -->
+      <div class="botonDer">
+        <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">Nueva Categoria</button>
+      </div>
+
+      <!-- TABLA  -->
       <table class="table table-striped">
         <thead>
           <tr class="table-light">
@@ -26,21 +33,71 @@
             <td>@if (category.status) {
               Activo
               } @else {
-                Inactivo
+              Inactivo
               }
             </td>
           </tr>
-        }
+          }
         </tbody>
       </table>
-      </div>
+    </div>
 
-      <div class="card-footer">
-        <small>29 de agosto de 2024</small>
+    <!-- MODAL  -->
+    <div class="modal fade" id="modalForm" tabindex="-1" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+          <!-- MODAL HEADER  -->
+          <div class="modal-header">
+            <h5 class="modal-title">Nueva Categoría</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- FORMULARIO PARA NUEVA CATEGORIA  -->
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <!-- MODAL BODY  -->
+            <div class="modal-body">
+
+              <!-- CATEGORIA  -->
+              <div class="mb-3">
+                <label for="category" class="form-label"> Categoria <span class="input-required">*</span></label>
+                <input type="text" class="form-control" formControlName="category" id="category"
+                  placeholder="Nombre de la Categoria" 
+                  [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}">
+
+                @if (form.controls['category'].errors && submitted){
+                <small class="invalid-feedback">Favor de ingresar un nombre de categoría válido</small>
+                }
+              </div>
+
+              <!-- TAG  -->
+              <div class="mb-3">
+                <label for="tag" class="form-label"> Tag <span class="input-required">*</span></label>
+                <input type="text" class="form-control" formControlName="tag" id="tag"
+                  placeholder="Tag de la categoria" 
+                  [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">
+
+                @if (form.controls['tag'].errors && submitted){
+                <small class="invalid-feedback">Favor de ingresar un tag válido</small>
+                }
+              </div>
+
+              <!-- MODAL FOOTER-->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-save"> Agregar </button>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
       </div>
     </div>
+
+    <div class="card-footer">
+      <small>25 de Septiembre de 2024</small>
+    </div>
+
   </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-
+</div>
