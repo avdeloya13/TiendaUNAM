@@ -77,7 +77,7 @@ export class CategoryComponent {
     });
   }
 
-  updateCategory(Category: Category){
+  UpdateCategory(Category: Category){
     this.categoryUpdate = Category.category_id;
 
     this.form.reset();
