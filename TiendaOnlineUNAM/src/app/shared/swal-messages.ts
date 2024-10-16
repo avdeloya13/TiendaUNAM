@@ -4,6 +4,10 @@ export class SwalMessages{
 
     //Mensaje de confirmacion
     sucessMessage(message: string){
+        if (message == null){
+            message = "No se pudo conectar con la base de datos."
+        }
+
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -17,6 +21,10 @@ export class SwalMessages{
 
     //Mensaje de error
     errorMessage(message: string){
+        if (message == null){
+            message = "No se pudo conectar con la base de datos."
+        }
+        
         Swal.fire({
             position: 'top-end',
             icon: 'error',
