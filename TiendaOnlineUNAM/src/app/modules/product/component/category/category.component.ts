@@ -25,6 +25,8 @@ export class CategoryComponent {
 
   swal: SwalMessages = new SwalMessages();
 
+  current_date = new Date();
+
   constructor(private categoryService:CategoryService, private formBuilder: FormBuilder){ 
     //Formulario
     this.form = this.formBuilder.group({
@@ -38,7 +40,7 @@ export class CategoryComponent {
   }
 
   getCategories(){
-    return this.categoryService.getCategories().subscribe({
+    this.categoryService.getCategories().subscribe({
       next: (v) => {
         this.categories = v;
       },

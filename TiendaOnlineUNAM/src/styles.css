@@ -215,6 +215,12 @@
     margin: auto;
   }
 
+  /* PRACTICA 8 */
+  .td-status-disable{
+    color: red;
+  }
+  
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
