@@ -117,12 +117,11 @@ export class CategoryComponent {
       next: (v) => {
         this.getCategories();
         this.hideModalForm();
-     //   this.resetVariables();
+     
         this.categoryUpdate = 0;
         this.swal.sucessMessage("La categoría ha sido actualizada");
       },
       error: (e) => {
-        console.log(e);
         this.swal.errorMessage("No se pudo actualizar la categoría");
       }
     });

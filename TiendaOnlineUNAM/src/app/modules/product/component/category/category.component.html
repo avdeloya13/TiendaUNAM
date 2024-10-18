@@ -46,11 +46,11 @@
                   {{"Activo"}}
                 </div>
               </a>
-
             </td>
 
-            <td>
-              <a (click)="updateCategory(category)">
+            <td> 
+              <!--Solo si se encuentra activo se puede editar-->
+              <a *ngIf= "category.status == 1" (click)="updateCategory(category)">
                 <i class="fa-solid fa-pencil"></i>
               </a>
             </td>
