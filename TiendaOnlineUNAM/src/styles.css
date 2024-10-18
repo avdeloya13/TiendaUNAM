@@ -226,45 +226,6 @@
     cursor: pointer;
   }
 
-  /* ul dropdown  */
-  .dropdown-button{
-    border: none;
-    background-color: transparent;
-    color: white;
-  }
-
-  .dropdown-item{
-    color: white !important;
-    cursor: pointer;
-  }
-
-  .dropdown-item:hover{
-    color: white !important;
-  }
-
-  .enable-item{
-    color: blue !important;
-    cursor: pointer;
-  }
-
-  .enable-item:hover{
-    color: white !important;
-  }
-
-  .disable-item{
-    color: red !important;
-    cursor: pointer;
-  }
-
-  .disable-item:hover{
-    color: white !important;
-  }
-
-  .icon-text-ul{
-    font-size: 14px;
-    margin-right: 8px;
-  }
-
   /* swal messages  */
   .swal-title{
     font-size: 24px;
