@@ -11,7 +11,9 @@
     <div class="card-body">
       <!-- BOTON NUEVA CATEGORIA  -->
       <div class="botonDer">
-        <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">Nueva Categoria</button>
+        <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+          <i class="fa-solid fa-circle-plus"></i> Nueva Categoria
+        </button>
       </div>
 
       <!-- TABLA  -->
@@ -48,8 +50,8 @@
             </td>
 
             <td>
-              <a (click)="UpdateCategory(category)">
-                <i class="ph ph-note-pencil icon-text-ul"></i>
+              <a (click)="updateCategory(category)">
+                <i class="fa-solid fa-pencil"></i>
               </a>
             </td>
 
@@ -66,7 +68,8 @@
 
           <!-- MODAL HEADER  -->
           <div class="modal-header">
-            <h5 class="modal-title"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} Categoría</h5>
+            <!--<h5 class="modal-title"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} Categoría</h5>-->
+            <h5 class="modal-title"> Agregar Categoría</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 

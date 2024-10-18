@@ -33,12 +33,12 @@ export class CategoryService {
   } 
 
   //Consume el endpoint delete /category/{id}
-  deleteCategory(id: number): Observable<any>{
+  disableCategory(id: number): Observable<any>{
     return this.http.delete(api_dwb_uri + this.source + "/" + id);
   }
 
   //Consume el endpoint put /category/{id}/activate
-  activateCategory(id: number): Observable<any>{
+  enableCategory(id: number): Observable<any>{
     return this.http.put(api_dwb_uri + this.source + "/" + id + "/activate", null);
   }
 
