@@ -68,8 +68,7 @@
 
           <!-- MODAL HEADER  -->
           <div class="modal-header">
-            <!--<h5 class="modal-title"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} Categoría</h5>-->
-            <h5 class="modal-title"> Agregar Categoría</h5>
+            <h5 class="modal-title"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} Categoría</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
@@ -105,7 +104,7 @@
 
               <!-- MODAL FOOTER-->
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-save"> Agregar </button>
+                <button type="submit" class="btn btn-primary btn-save"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} </button>
               </div>
 
             </div>

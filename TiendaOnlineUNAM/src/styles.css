@@ -218,6 +218,12 @@
   /* PRACTICA 8 */
   .td-status-disable{
     color: red;
+    cursor: pointer;
+  }
+
+  .td-status-enable{
+    color: white;
+    cursor: pointer;
   }
 
   /* ul dropdown  */
