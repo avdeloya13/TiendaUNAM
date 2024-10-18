@@ -47,7 +47,7 @@ export class CategoryComponent {
         this.categoryService.enableCategory(id).subscribe({
           next: (v) => {
             this.swal.sucessMessage("La categoría ha sido activada");
-            this.getCategories(); //para actualizar las categorias
+            this.getCategories();
           },
           error: (e) => {
             this.swal.errorMessage("No se pudo activar la categoría");
@@ -117,7 +117,8 @@ export class CategoryComponent {
       next: (v) => {
         this.getCategories();
         this.hideModalForm();
-        this.resetVariables();
+     //   this.resetVariables();
+        this.categoryUpdate = 0;
         this.swal.sucessMessage("La categoría ha sido actualizada");
       },
       error: (e) => {
@@ -128,13 +129,17 @@ export class CategoryComponent {
   }
 
   updateCategory(category: Category){
-    this.resetVariables();
     this.showModalForm();
     
     this.categoryUpdate = category.category_id;
 
+    this.form.reset();
+    this.submitted = false;
+
     this.form.controls['category'].setValue(category.category);
     this.form.controls['tag'].setValue(category.tag);
+
+    $("#modalForm").modal("show"); 
   }
 
   //Para el formulario de nueva categoria
@@ -146,13 +151,6 @@ export class CategoryComponent {
 
   hideModalForm(){
     $("#modalForm").modal("hide");
-  }
-
-  //Auxiliar
-  resetVariables(){
-    this.form.reset();
-    this.submitted = false;
-    this.categoryUpdate = 0;
   }
 
 }
