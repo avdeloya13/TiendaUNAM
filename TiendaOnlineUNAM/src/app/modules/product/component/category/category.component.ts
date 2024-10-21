@@ -59,7 +59,7 @@ export class CategoryComponent {
 
   disableCategory(id: number){
     this.swal.confirmMessage.fire({
-      title: "Favor de confirmar la eliminación",
+      title: "Esta seguro que/de ...",
     }).then((result) => {
       if (result.isConfirmed) {
         this.categoryService.disableCategory(id).subscribe({
