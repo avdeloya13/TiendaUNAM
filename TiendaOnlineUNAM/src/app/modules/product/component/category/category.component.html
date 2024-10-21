@@ -11,7 +11,9 @@
     <div class="card-body">
       <!-- BOTON NUEVA CATEGORIA  -->
       <div class="botonDer">
-        <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">Nueva Categoria</button>
+        <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+          <i class="fa-solid fa-circle-plus"></i> Nueva Categoria
+        </button>
       </div>
 
       <!-- TABLA  -->
@@ -22,20 +24,37 @@
             <th scope="col">Category</th>
             <th scope="col">Tag</th>
             <th scope="col">Status</th>
+            <th scope="col">Editar</th>
           </tr>
         </thead>
         <tbody>
-          @for (category of categories; track category){
+          @for (category of categories; track category; ; let i = $index){
           <tr>
-            <td>{{category.category_id}} </td>
+            <td>{{ i + 1 }}</td>
             <td>{{category.category}} </td>
             <td>{{category.tag}} </td>
-            <td>@if (category.status) {
-              Activo
-              } @else {
-              Inactivo
-              }
+
+            <td>
+              <a *ngIf= "category.status == 0" (click)="enableCategory(category.category_id)">
+                <div class="td-status td-status-disable">
+                  {{"Inactivo"}}
+                </div>
+              </a>
+
+              <a *ngIf= "category.status == 1" (click)="disableCategory(category.category_id)">
+                <div class="td-status td-status-enable">
+                  {{"Activo"}}
+                </div>
+              </a>
             </td>
+
+            <td> 
+              <!--Solo si se encuentra activo se puede editar-->
+              <a *ngIf= "category.status == 1" (click)="updateCategory(category)">
+                <i class="fa-solid fa-pencil"></i>
+              </a>
+            </td>
+
           </tr>
           }
         </tbody>
@@ -49,7 +68,7 @@
 
           <!-- MODAL HEADER  -->
           <div class="modal-header">
-            <h5 class="modal-title">Nueva Categoría</h5>
+            <h5 class="modal-title"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} Categoría</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
@@ -85,7 +104,7 @@
 
               <!-- MODAL FOOTER-->
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-save"> Agregar </button>
+                <button type="submit" class="btn btn-primary btn-save"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} </button>
               </div>
 
             </div>
@@ -95,8 +114,8 @@
       </div>
     </div>
 
-    <div class="card-footer">
-      <small>25 de Septiembre de 2024</small>
+    <div class="card-footer text-end">
+      <small>{{ current_date | date: 'dd/MMM/yyyy, h:mm a' }}</small>
     </div>
 
   </div>

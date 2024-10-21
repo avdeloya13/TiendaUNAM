@@ -215,6 +215,36 @@
     margin: auto;
   }
 
+  /* PRACTICA 8 */
+  .td-status-disable{
+    color: red;
+    cursor: pointer;
+  }
+
+  .td-status-enable{
+    color: white;
+    cursor: pointer;
+  }
+
+  /* swal messages  */
+  .swal-title{
+    font-size: 24px;
+  }
+
+  .swal-icon{
+    font-size: 12px;
+  }
+
+  .swal-cancel-button{
+    width: 120px;
+    margin: 12px;
+  }
+
+  .swal-confirm-button{
+    width: 120px;
+    margin: 12px;
+  }
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

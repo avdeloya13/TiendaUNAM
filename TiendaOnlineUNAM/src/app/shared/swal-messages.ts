@@ -2,8 +2,26 @@ import Swal from "sweetalert2";
 
 export class SwalMessages{
 
+    //Muestra mensaje para confirmar/aceptar una accion
+    confirmMessage = Swal.mixin({
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: `Cancelar`,
+        confirmButtonText: "Confirmar",
+        customClass: {
+            title: 'swal-title',
+            icon: 'swal-icon',
+            confirmButton: 'btn btn-primary swal-confirm-button',
+            cancelButton: 'btn btn-danger swal-cancel-button',
+        },
+    });
+
     //Mensaje de confirmacion
     sucessMessage(message: string){
+        if (message == null){
+            message = "No se pudo conectar con la base de datos."
+        }
+
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -17,6 +35,10 @@ export class SwalMessages{
 
     //Mensaje de error
     errorMessage(message: string){
+        if (message == null){
+            message = "No se pudo conectar con la base de datos."
+        }
+        
         Swal.fire({
             position: 'top-end',
             icon: 'error',
