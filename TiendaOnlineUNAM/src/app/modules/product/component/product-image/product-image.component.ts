@@ -45,7 +45,7 @@ export class ProductImageComponent {
 
 
   redirect(url:string[]){
-
+    
   }
  
 }
