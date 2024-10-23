@@ -1,0 +1,49 @@
+<!-- product data  -->
+
+<div class="col-md-8">
+    <div class="card">
+        <div class="card-body-product">
+
+            <!-- product -->
+
+            <div class="product-title">
+                {{ product.product }}
+            </div>
+
+            <table class="table">
+                <tbody>
+
+                    <!-- gtin -->
+                    <tr>
+                        <th class="col-md-4">GTIN</th>
+                        <td>{{ product.gtin }}</td>
+                    </tr>
+
+                    <!-- description -->
+                    <tr>
+                        <th class="col-md-4">Descripción</th>
+                        <td>{{ product.description }}</td>
+                    </tr>
+
+                    <!-- price -->
+                    <tr>
+                        <th class="col-md-4">Precio</th>
+                        <td>{{ product.price }}</td>
+                    </tr>
+
+                    <!-- stock -->
+                    <tr>
+                        <th class="col-md-4">Stock</th>
+                        <td>{{ product.stock }}</td>
+                    </tr>
+
+                    <!-- category_id -->
+                    <tr>
+                        <th class="col-md-4">Categoría</th>
+                        <td>{{ product.category }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
