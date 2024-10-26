@@ -8,7 +8,7 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { Category } from '../../_model/category';
 import { Router } from '@angular/router';
 
-declare var $: any; // JQuery
+declare var $: any;
 
 @Component({
   selector: 'app-product',
@@ -19,17 +19,16 @@ declare var $: any; // JQuery
 })
 export class ProductComponent {
   
-  products: DtoProductList[] = []; // product list
+  products: DtoProductList[] = [];
 
-  categories: Category[] = []; // category list
+  categories: Category[] = [];
 
-  // Product form
   form: FormGroup;
   
-  current_date = new Date(); // hora y fecha actual
-  loading = false; // loading request
-  submitted = false; // Form submitted
-  swal: SwalMessages = new SwalMessages(); // swal messages
+  current_date = new Date();
+  loading = false;
+  submitted = false;
+  swal: SwalMessages = new SwalMessages();
 
   constructor(
     private categoryService: CategoryService,
@@ -59,7 +58,7 @@ export class ProductComponent {
       if (result.isConfirmed) {
         this.productService.disableProduct(id).subscribe({
           next: (v) => {
-            this.swal.sucessMessage(v.message);
+            this.swal.successMessage(v.message);
             this.getProducts();
           },
           error: (e) => {
@@ -78,7 +77,7 @@ export class ProductComponent {
       if (result.isConfirmed) {
         this.productService.enableProduct(id).subscribe({
           next: (v) => {
-            this.swal.sucessMessage(v.message);
+            this.swal.successMessage(v.message);
             this.getProducts();
           },
           error: (e) => {
@@ -101,31 +100,28 @@ export class ProductComponent {
       error: (e) => {
         this.loading = false;
         console.log(e);
-        this.swal.errorMessage(e.error!.message); // show message
+        this.swal.errorMessage(e.error!.message);
       }
     });
   }
 
   onSubmit(){
-    // validate form
     this.submitted = true;
     if(this.form.invalid) return;
     this.submitted = false;
 
     this.productService.createProduct(this.form.value).subscribe({
       next: (v) => {
-        this.swal.sucessMessage(v.message); // show message
-        this.getProducts(); // reload products
-        this.hideModalForm(); // close modal
+        this.swal.successMessage(v.message);
+        this.getProducts();
+        this.hideModalForm();
       },
       error: (e) => {
         console.error(e);
-        this.swal.errorMessage(e.error!.message); // show message
+        this.swal.errorMessage(e.error!.message);
       }
     });
   }
-
-  // modals 
 
   showModalForm(){
     $("#modalForm").modal("show");
@@ -138,8 +134,6 @@ export class ProductComponent {
     $("#modalForm").modal("hide");
   }
 
-  // catalogues 
-
   getActiveCategories(){
     this.categoryService.getActiveCategories().subscribe({
       next: (v) => {
@@ -147,7 +141,7 @@ export class ProductComponent {
       },
       error: (e) => {
         console.log(e);
-        this.swal.errorMessage(e.error!.message); // show message
+        this.swal.errorMessage(e.error!.message);
       }
     });
   }

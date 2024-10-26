@@ -1,3 +1,18 @@
 .card{
     margin-top: 8%;
 }
+
+.det{
+    color: white;
+    cursor: pointer;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+.dis-status{
+    cursor:auto;
+}
+
+.cur{
+    cursor: pointer;
+}

@@ -30,16 +30,16 @@ export class ProductService {
     return this.http.get(api_dwb_uri + this.source + "/" + gtin);
   }
 
-  getProducts(): Observable<any>{
+  getProducts(): Observable<any> {
     return this.http.get(api_dwb_uri + this.source);
   }
 
-  getActiveProducts(): Observable<any>{
+  getActiveProducts(): Observable<any> {
     return this.http.get(api_dwb_uri + this.source + "/active");
   }
 
-  getProductsByCategory(category_id: number): Observable<any>{
-    return this.http.get(api_dwb_uri + this.source + "/category" + "/" + category_id);
+  getProductsByCategory(category_id: number): Observable<any> {
+    return this.http.get(api_dwb_uri + this.source + "/category/" + category_id);
   }
 
   updateProduct(product: any, id: number): Observable<any> {
@@ -47,6 +47,21 @@ export class ProductService {
   }
 
   updateProductStock(gtin: string, stock: number): Observable<any> {
-    return this.http.put(api_dwb_uri + this.source + "/" + gtin + "/stock"+ "/" + stock, null);
+    return this.http.put(api_dwb_uri + this.source + "/" + gtin + "/stock/" + stock, null);
+  }
+
+  // Método para cargar la imagen del producto
+  uploadProductImage(gtin: string, imageData: FormData): Observable<any> {
+    return this.http.post(api_dwb_uri + this.source + "/" + gtin + "/images", imageData);
+  }
+
+  // Método para eliminar la imagen del producto
+  deleteProductImage(imageId: number): Observable<any> {
+    return this.http.delete(api_dwb_uri + this.source + "/images/" + imageId);
+  }
+
+  // Método para obtener las imágenes del producto
+  getProductImages(gtin: string): Observable<{ images: any[] }> {
+    return this.http.get<{ images: any[] }>(api_dwb_uri + this.source + "/" + gtin + "/images");
   }
 }
