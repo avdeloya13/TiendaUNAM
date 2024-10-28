@@ -2,7 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { api_dwb_uri } from "../../../shared/api-dwb-uri";
 import { Observable } from 'rxjs';
 import { ProductImage } from "../_model/product-image";
+import { Injectable } from "@angular/core";
 
+@Injectable({
+    providedIn: 'root'
+  })
 
 export class ProductImageService{
 
