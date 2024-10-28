@@ -6,6 +6,7 @@ import { Product } from '../../_model/product';
 import { SharedModule } from '../../../../shared/shared-module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalMessages } from '../../../../shared/swal-messages';
+import { ProductImageService } from '../../_service/product-image.service';
 
 declare var $: any;
 
@@ -16,7 +17,7 @@ declare var $: any;
   templateUrl: './product-image.component.html',
   styleUrls: ['./product-image.component.css']
 })
-export class ProductImageComponent implements OnInit {
+export class ProductImageComponent {
   product: Product = new Product();
   gtin: string | null = null;
   swal: SwalMessages = new SwalMessages();
@@ -27,6 +28,7 @@ export class ProductImageComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private productimageService: ProductImageService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
@@ -86,13 +88,13 @@ export class ProductImageComponent implements OnInit {
   }
 
   getProductImages() {
-    this.productService.getProductImages(this.gtin!).subscribe({
-      next: (response) => {
-        this.productImgs = response.images;
+    this.productimageService.getProductImage(this.product.product_id).subscribe({
+      next: (v) => {
+        this.productImgs = v;
       },
       error: (e) => {
-        this.swal.errorMessage(e.error.message!);
-      }
+        this.swal.errorMessage("No hay imágenes");
+      } 
     });
   }
 
@@ -103,14 +105,14 @@ export class ProductImageComponent implements OnInit {
     }
   }
 
-  uploadProductImage(file: File) {
+  uploadProductImage(product_image: any) {
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('image', product_image);
 
-    this.productService.uploadProductImage(this.gtin!, formData).subscribe({
-      next: (response) => {
-        this.swal.successMessage("Imagen subida con éxito!");
+    this.productimageService.uploadProductImage(product_image).subscribe({
+      next: (v) => {
         this.getProductImages();
+        this.swal.successMessage("Imagen subida con éxito!");
       },
       error: (e) => {
         this.swal.errorMessage(e.error.message!);
@@ -119,7 +121,7 @@ export class ProductImageComponent implements OnInit {
   }
 
   deleteProductImage(imageId: number) {
-    this.productService.deleteProductImage(imageId).subscribe({
+    this.productimageService.deleteProductImage(imageId).subscribe({
       next: (response) => {
         this.swal.successMessage("Imagen eliminada con éxito!");
         this.getProductImages();
