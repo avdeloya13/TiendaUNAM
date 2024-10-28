@@ -148,13 +148,16 @@
                     <div *ngIf="productImgs.length === 0" class="text-center">
                         <img src="assets/no-product-image.png" class="d-block w-100" alt="No hay imagen disponible">
                     </div>
-                    <div class="edit-product-image text-center">
-                        <label for="uploadImage" class="cursor-pointer">
-                            <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
-                            <i class="ph ph-note-pencil icon-text-button"></i>
-                            <p class="item-txt"> Editar imagen </p>
+                    <div class="text-center">
+                        <label for="uploadImage">
+                            <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" class="d-none">
+                            <div class="edit-customer-image ">
+                              <i class="ph ph-note-pencil icon-text-button"></i>
+                              Editar imagen
+                            </div>
                         </label>
                     </div>
+      
                 </div>
             </div>
 
@@ -195,18 +198,4 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Editar producto</h5>
-                    <button type="button" class="modal-close-button" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="modal-close-button-x">&times;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

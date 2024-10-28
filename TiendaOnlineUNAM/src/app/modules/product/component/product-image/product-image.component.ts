@@ -7,6 +7,8 @@ import { SharedModule } from '../../../../shared/shared-module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductImageService } from '../../_service/product-image.service';
+import { NgxPhotoEditorService } from 'ngx-photo-editor';
+import { ProductImage } from '../../_model/product-image';
 
 declare var $: any;
 
@@ -32,7 +34,8 @@ export class ProductImageComponent {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private ngxService: NgxPhotoEditorService
   ) {
     this.form = this.formBuilder.group({
       gtin: ['', Validators.required],
@@ -98,27 +101,36 @@ export class ProductImageComponent {
     });
   }
 
-  fileChangeHandler(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.uploadProductImage(file);
-    }
+  fileChangeHandler($event: any) {
+    this.ngxService.open($event, {
+      aspectRatio: 1 / 1,
+      autoCropArea: 1,
+      resizeToWidth: 360,
+      resizeToHeight: 360,
+    }).subscribe(data => {
+      this.uploadProductImage(data.base64!);
+    });
   }
 
-  uploadProductImage(product_image: any) {
-    const formData = new FormData();
-    formData.append('image', product_image);
+  uploadProductImage(image: any){
 
-    this.productimageService.uploadProductImage(product_image).subscribe({
+    let productImage: ProductImage = new ProductImage();
+    productImage.product_image_id = this.product.image.product_image_id;
+    productImage.image = image;
+ 
+    // enviamos la imagen a la API
+    this.productimageService.uploadProductImage(productImage).subscribe({
       next: (v) => {
-        this.getProductImages();
         this.swal.successMessage("Imagen subida con éxito!");
+        this.getProduct();
       },
       error: (e) => {
-        this.swal.errorMessage(e.error.message!);
+        console.error(e);
+        this.swal.errorMessage("No se pudo subir la imagen.");
       }
     });
   }
+
 
   deleteProductImage(imageId: number) {
     this.productimageService.deleteProductImage(imageId).subscribe({
