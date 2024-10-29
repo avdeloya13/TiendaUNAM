@@ -115,7 +115,7 @@ export class ProductImageComponent {
   uploadProductImage(image: any){
 
     let productImage: ProductImage = new ProductImage();
-    productImage.product_image_id = this.product.image.product_image_id;
+    productImage.product_id = this.product.product_id;
     productImage.image = image;
  
     // enviamos la imagen a la API
@@ -152,7 +152,6 @@ export class ProductImageComponent {
     this.productService.updateProduct(this.form.value, this.product.product_id).subscribe({
       next: (v) => {
         this.swal.successMessage("Producto actualizado con éxito!");
-        //this.router.navigate(['/product']); 
       },
       error: (e) => {
         console.error(e);
