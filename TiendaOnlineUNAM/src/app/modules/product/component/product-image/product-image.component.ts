@@ -72,6 +72,7 @@ export class ProductImageComponent {
       next: (v) => {
         this.product = v;
         this.populateForm();
+        this.getProductImages();
       },
       error: (e) => {
         this.swal.errorMessage(e.error.message!);
@@ -141,8 +142,8 @@ export class ProductImageComponent {
       error: (e) => {
         this.swal.errorMessage(e.error.message!);
       }
-    });
-  }
+      });
+      }
 
   updateProduct() {
     this.submitted = true;
