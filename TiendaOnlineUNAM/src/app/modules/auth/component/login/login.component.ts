@@ -51,6 +51,7 @@ export class LoginComponent {
             this.authenticationService.saveToken(token);
             this.authenticationService.addUserToLocalCache(response.body);
             this.router.navigateByUrl('/secured');
+            window.location.reload();
             this.showLoading = false; 
           }else{
             if (response.body === null) {
@@ -68,7 +69,7 @@ export class LoginComponent {
       )
     );
   }
-
+  
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
