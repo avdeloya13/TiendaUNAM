@@ -36,11 +36,11 @@ export const routes: Routes = [
         path: 'product/:gtin',
         component: ProductImageComponent
     },
-    {
-        path: 'secured',
-        component: SecuredComponent, 
+    //{
+       // path: 'secured',
+      //  component: SecuredComponent, 
         //canActivate: [authenticationGuard]
-    },
+    //},
     {
         path: 'home',
         component: HomeComponent, 
