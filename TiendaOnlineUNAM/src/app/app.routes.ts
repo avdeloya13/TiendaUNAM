@@ -8,11 +8,12 @@ import { SecuredComponent } from './modules/auth/component/secured/secured.compo
 import { authenticationGuard } from './modules/auth/authentication.guard';
 import { ProductImageComponent } from './modules/product/component/product-image/product-image.component';
 import { ProductComponent } from './modules/product/component/product/product.component';
+import { HomeComponent } from './modules/layout/component/home/home.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/categoria',
+        redirectTo: '/home',
         pathMatch: 'full'
     },
     {
@@ -38,7 +39,10 @@ export const routes: Routes = [
     {
         path: 'secured',
         component: SecuredComponent, 
-        canActivate: [authenticationGuard]
+        //canActivate: [authenticationGuard]
+    },
+    {
+        path: 'home',
+        component: HomeComponent, 
     }
-
 ];
