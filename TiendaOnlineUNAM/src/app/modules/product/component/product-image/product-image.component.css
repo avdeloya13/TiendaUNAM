@@ -13,3 +13,10 @@
     z-index: 10; 
 }
 
+.col-letras{
+    color:rgb(248, 98, 28);
+    font-size: 20px; 
+    font-weight: bold;
+    text-align: center;
+}
+
