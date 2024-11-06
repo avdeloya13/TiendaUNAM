@@ -152,7 +152,10 @@ export class ProductImageComponent {
 
     this.productService.updateProduct(this.form.value, this.product.product_id).subscribe({
       next: (v) => {
+        this.getProduct();
+        this.hideModalForm();
         this.swal.successMessage("Producto actualizado con éxito!");
+        
       },
       error: (e) => {
         console.error(e);
@@ -173,5 +176,9 @@ export class ProductImageComponent {
     $("#modalForm").modal("show");
     this.form.reset();
     this.submitted = false;
+  }
+
+  hideModalForm(){
+    $("#modalForm").modal("hide");
   }
 }

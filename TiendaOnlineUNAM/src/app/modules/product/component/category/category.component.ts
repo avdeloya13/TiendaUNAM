@@ -58,7 +58,7 @@ export class CategoryComponent {
 
   disableCategory(id: number){
     this.swal.confirmMessage.fire({
-      title: "Esta seguro que/de ...",
+      title: "Favor de confirmar la desactivación",
     }).then((result) => {
       if (result.isConfirmed) {
         this.categoryService.disableCategory(id).subscribe({
@@ -115,7 +115,7 @@ export class CategoryComponent {
     this.categoryService.updateCategory(this.form.value, this.categoryUpdate).subscribe({
       next: (v) => {
         this.getCategories();
-       // this.hideModalForm();
+        this.hideModalForm();
      
         this.categoryUpdate = 0;
         this.swal.successMessage("La categoría ha sido actualizada");

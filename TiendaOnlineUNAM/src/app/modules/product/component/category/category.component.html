@@ -49,8 +49,8 @@
                       <!-- menu options -->
                       <div class="dropdown-menu cur" aria-labelledby="dropdownMenuButton">
 
-                        <a *ngIf= "category.status == 1" (click)="updateCategory(category)">
-                          <i class="fa-solid fa-pencil icon-text-ul"></i> Editar
+                        <a *ngIf= "category.status == 1" class="dropdown-item disable-item" (click)="updateCategory(category)">
+                          <i class="ph ph-note-pencil icon-text-ul"></i> Editar
                         </a>
 
                         @if(category.status != 0){
