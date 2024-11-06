@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../../../../shared/shared-module';
 import { SwalMessages } from '../../../../shared/swal-messages';
 
-//Variable Global
 declare var $: any;
 
 @Component({
@@ -28,7 +27,7 @@ export class CategoryComponent {
   current_date = new Date();
 
   constructor(private categoryService:CategoryService, private formBuilder: FormBuilder){ 
-    //Formulario
+
     this.form = this.formBuilder.group({
     category: ["", [Validators.required]],
     tag: ["", [Validators.required]],
@@ -46,7 +45,7 @@ export class CategoryComponent {
       if (result.isConfirmed) {
         this.categoryService.enableCategory(id).subscribe({
           next: (v) => {
-            this.swal.sucessMessage("La categoría ha sido activada");
+            this.swal.successMessage("La categoría ha sido activada");
             this.getCategories();
           },
           error: (e) => {
@@ -64,7 +63,7 @@ export class CategoryComponent {
       if (result.isConfirmed) {
         this.categoryService.disableCategory(id).subscribe({
           next: (v) => {
-            this.swal.sucessMessage("La categoría ha sido eliminada");
+            this.swal.successMessage("La categoría ha sido eliminada");
             this.getCategories();
           },
           error: (e) => {
@@ -102,7 +101,7 @@ export class CategoryComponent {
   onSubmitCreate(){
     this.categoryService.createCategory(this.form.value).subscribe({
       next: (v) => {
-        this.swal.sucessMessage("La categoría ha sido creada");
+        this.swal.successMessage("La categoría ha sido creada");
         this.getCategories();
         this.hideModalForm();
       },
@@ -116,10 +115,10 @@ export class CategoryComponent {
     this.categoryService.updateCategory(this.form.value, this.categoryUpdate).subscribe({
       next: (v) => {
         this.getCategories();
-        this.hideModalForm();
+       // this.hideModalForm();
      
         this.categoryUpdate = 0;
-        this.swal.sucessMessage("La categoría ha sido actualizada");
+        this.swal.successMessage("La categoría ha sido actualizada");
       },
       error: (e) => {
         this.swal.errorMessage("No se pudo actualizar la categoría");
@@ -129,7 +128,7 @@ export class CategoryComponent {
 
   updateCategory(category: Category){
     this.showModalForm();
-    
+     
     this.categoryUpdate = category.category_id;
 
     this.form.reset();
@@ -141,7 +140,6 @@ export class CategoryComponent {
     $("#modalForm").modal("show"); 
   }
 
-  //Para el formulario de nueva categoria
   showModalForm(){
     this.submitted = false;
     this.form.reset();

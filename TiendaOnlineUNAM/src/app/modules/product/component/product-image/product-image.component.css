@@ -1,0 +1,15 @@
+.card{
+    margin-top: 16%;
+}
+
+.ret{
+   cursor: pointer;
+}
+
+.carousel-del {
+    position: absolute;
+    top: 10px;  
+    right: 10px; 
+    z-index: 10; 
+}
+

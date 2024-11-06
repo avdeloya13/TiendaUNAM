@@ -1,13 +1,12 @@
 import Swal from "sweetalert2";
 
-export class SwalMessages{
-
-    //Muestra mensaje para confirmar/aceptar una accion
+export class SwalMessages {
+    // Muestra mensaje para confirmar/aceptar una acción
     confirmMessage = Swal.mixin({
         icon: 'warning',
         showCancelButton: true,
-        cancelButtonText: `Cancelar`,
-        confirmButtonText: "Confirmar",
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Confirmar',
         customClass: {
             title: 'swal-title',
             icon: 'swal-icon',
@@ -16,10 +15,10 @@ export class SwalMessages{
         },
     });
 
-    //Mensaje de confirmacion
-    sucessMessage(message: string){
-        if (message == null){
-            message = "No se pudo conectar con la base de datos."
+    // Mensaje de éxito
+    successMessage(message: string | null) {
+        if (!message) {
+            message = "No se pudo conectar con la base de datos.";
         }
 
         Swal.fire({
@@ -33,12 +32,12 @@ export class SwalMessages{
         });
     }
 
-    //Mensaje de error
-    errorMessage(message: string){
-        if (message == null){
-            message = "No se pudo conectar con la base de datos."
+    // Mensaje de error
+    errorMessage(message: string | null) {
+        if (!message) {
+            message = "No se pudo conectar con la base de datos.";
         }
-        
+
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -49,6 +48,4 @@ export class SwalMessages{
             timer: 8000
         });
     }
-
-
 }
