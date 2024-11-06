@@ -26,12 +26,10 @@
   /* PRACTICA 8 */
   .td-status-disable{
     color: red;
-    cursor: pointer;
   }
 
   .td-status-enable{
     color: rgb(2, 165, 51);
-    cursor: pointer;
   }
 
   /* swal messages  */

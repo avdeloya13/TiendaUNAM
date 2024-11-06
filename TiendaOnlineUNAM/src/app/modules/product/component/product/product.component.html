@@ -55,10 +55,11 @@
         
                             <!-- menu options -->
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item cur" (click)="showProduct(product.gtin)">
-                                <i class="ph ph-eye icon-text-ul"></i>Ver detalles
-                              </a>
+
                               @if(product.status != 0){
+                                <a class="dropdown-item cur" (click)="showProduct(product.gtin)">
+                                  <i class="ph ph-eye icon-text-ul"></i>Ver detalles
+                                </a>
                                 <a class="dropdown-item disable-item cur" (click)="disableProduct(product.product_id)">
                                   <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
                                 </a>
@@ -99,11 +100,11 @@
     
                     <div class="col-md-6">
                         <div class="mb-3">
-                          <label for="gtin">GTIN <span class="color-red">*</span> </label>
+                          <label for="gtin">GTIN <span class="input-required">*</span> </label>
                           <input type="text" class="form-control" formControlName="gtin" id="gtin" placeholder="Código GTIN del producto..." 
                               [ngClass]="{'is-invalid': form.controls['gtin'].errors && submitted}" >
                           @if (form.controls['gtin'].errors && submitted) {
-                            <small class="input-error-message">Favor de ingresar un código gtin válido</small>
+                            <small class="input-error-message input-required">Favor de ingresar un código gtin válido</small>
                           }
                         </div>
                     </div>
@@ -112,11 +113,11 @@
           
                     <div class="col-md-6"> 
                         <div class="mb-3">
-                          <label for="product">Producto <span class="color-red">*</span> </label>
+                          <label for="product">Producto <span class="input-required">*</span> </label>
                           <input type="text" class="form-control" formControlName="product" id="product" placeholder="Nombre del producto..." 
                               [ngClass]="{'is-invalid': form.controls['product'].errors && submitted}" >
                           @if (form.controls['product'].errors && submitted) {
-                            <small class="input-error-message">Favor de ingresar un nombre de producto válido</small>
+                            <small class="input-error-message input-required">Favor de ingresar un nombre de producto válido</small>
                           }
                         </div>
                     </div>
@@ -125,11 +126,11 @@
           
                     <div class="col-md-6"> 
                         <div class="mb-3">
-                          <label for="price">Precio <span class="color-red">*</span> </label>
+                          <label for="price">Precio <span class="input-required">*</span> </label>
                           <input type="text" class="form-control" formControlName="price" id="price" placeholder="Precio del producto..." 
                               [ngClass]="{'is-invalid': form.controls['price'].errors && submitted}" >
                           @if (form.controls['price'].errors && submitted) {
-                            <small class="input-error-message">Favor de ingresar un precio válido</small>
+                            <small class="input-error-message input-required">Favor de ingresar un precio válido</small>
                           }
                         </div>
                     </div>
@@ -138,11 +139,11 @@
           
                     <div class="col-md-6"> 
                         <div class="mb-3">
-                          <label for="stock">Cantidad de productos <span class="color-red">*</span> </label>
+                          <label for="stock">Cantidad de productos <span class="input-required">*</span> </label>
                           <input type="text" class="form-control" formControlName="stock" id="stock" placeholder="Número de stock del producto..." 
                               [ngClass]="{'is-invalid': form.controls['stock'].errors && submitted}" >
                           @if (form.controls['stock'].errors && submitted) {
-                            <small class="input-error-message">Favor de ingresar un número de stock válido</small>
+                            <small class="input-error-message input-required">Favor de ingresar un número de stock válido</small>
                           }
                         </div>
                     </div>  
@@ -151,7 +152,7 @@
           
                     <div class="col-md-6"> 
                         <div class="mb-3">
-                          <label for="category_id">Categoría <span class="color-red">*</span> </label>
+                          <label for="category_id">Categoría <span class="input-required">*</span> </label>
                           <select class="form-select" formControlName="category_id" id="category_id"
                               [ngClass]="{'is-invalid': form.controls['category_id'].errors && submitted}">
                             <option [ngValue]=null hidden>Selecciona una categoría...</option>
@@ -160,7 +161,7 @@
                             }
                           </select>
                           @if (form.controls['category_id'].errors && submitted) {
-                            <small class="input-error-message">Favor de seleccionar válida</small>
+                            <small class="input-error-message input-required">Favor de seleccionar válida</small>
                           }
                         </div>
                     </div>
@@ -168,12 +169,12 @@
                     <!-- description  -->
           
                     <div class="mb-3">
-                      <label for="description">Descripción <span class="color-red">*</span> </label>
+                      <label for="description">Descripción <span class="input-required">*</span> </label>
                       <textarea rows="2" class="form-control" formControlName="description" id="description" placeholder="Descripción del producto..." 
                         [ngClass]="{'is-invalid': form.controls['description'].errors && submitted}" >
                       </textarea>
                       @if (form.controls['description'].errors && submitted) {
-                        <small class="input-error-message">Favor de ingresar una descripción válida</small>
+                        <small class="input-error-message input-required">Favor de ingresar una descripción válida</small>
                       }
                     </div>
                 </div>

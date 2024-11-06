@@ -23,41 +23,51 @@
             <th scope="col">Category_Id</th>
             <th scope="col">Category</th>
             <th scope="col">Tag</th>
-            <th scope="col">Status</th>
-            <th scope="col">Editar</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Más</th>
           </tr>
         </thead>
         <tbody>
-          @for (category of categories; track category; ; let i = $index){
-          <tr>
-            <td>{{ i + 1 }}</td>
-            <td>{{category.category}} </td>
-            <td>{{category.tag}} </td>
+          @for(category of categories; track category; ; let i = $index) {
+              <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{category.category}} </td>
+                <td>{{category.tag}} </td>
+                  <td>
+                    <div class="td-status" [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
+                      {{ category.status == 0 ? "Inactivo" : "Activo" }}
+                      </div>
+                  </td>
 
-            <td>
-              <a *ngIf= "category.status == 0" (click)="enableCategory(category.category_id)">
-                <div class="td-status td-status-disable">
-                  {{"Inactivo"}}
-                </div>
-              </a>
+                  <td>
+                    <div class="dropdown">
+                      <!-- dots button  -->
+                      <button class="dropdown-button det" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                      </button>
+  
+                      <!-- menu options -->
+                      <div class="dropdown-menu cur" aria-labelledby="dropdownMenuButton">
 
-              <a *ngIf= "category.status == 1" (click)="disableCategory(category.category_id)">
-                <div class="td-status td-status-enable">
-                  {{"Activo"}}
-                </div>
-              </a>
-            </td>
+                        <a *ngIf= "category.status == 1" (click)="updateCategory(category)">
+                          <i class="fa-solid fa-pencil icon-text-ul"></i> Editar
+                        </a>
 
-            <td> 
-              <!--Solo si se encuentra activo se puede editar-->
-              <a *ngIf= "category.status == 1" (click)="updateCategory(category)">
-                <i class="fa-solid fa-pencil"></i>
-              </a>
-            </td>
-
-          </tr>
+                        @if(category.status != 0){
+                          <a class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                            <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
+                          </a>
+                        }@else {
+                          <a class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                            <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                          </a>
+                        }
+                      </div>
+                    </div>
+                  </td>
+              </tr>
           }
-        </tbody>
+      </tbody>
       </table>
     </div>
 

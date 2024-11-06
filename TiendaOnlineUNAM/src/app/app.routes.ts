@@ -10,15 +10,12 @@ import { ProductImageComponent } from './modules/product/component/product-image
 import { ProductComponent } from './modules/product/component/product/product.component';
 import { HomeComponent } from './modules/layout/component/home/home.component';
 import { InvoiceComponent } from './modules/invoice/component/invoice/invoice.component';
+import { ByCategoryComponent } from './modules/product/component/by-category/by-category.component';
 
 export const routes: Routes = [
+    
     {
         path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-    },
-    {
-        path: 'home',
         component: HomeComponent 
     },
     {
@@ -40,6 +37,10 @@ export const routes: Routes = [
     {
         path: 'product/:gtin',
         component: ProductImageComponent
+    },
+    {
+        path: 'product/category/:id',
+        component: ByCategoryComponent
     },
     //{
        // path: 'secured',
