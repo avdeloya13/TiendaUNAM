@@ -34,7 +34,8 @@ export class Navbar2Component {
   getCategories(){
     this.categoryService.getActiveCategories().subscribe({
       next: (v) => {
-        this.categories = v;
+        //this.categories = v;
+        this.categories = v.sort((a: any, b: any) => a.category_id - b.category_id);
       },
       error: (e) => {
         console.log(e);

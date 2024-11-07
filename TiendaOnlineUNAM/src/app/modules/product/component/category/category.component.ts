@@ -77,7 +77,7 @@ export class CategoryComponent {
   getCategories(){
     this.categoryService.getCategories().subscribe({
       next: (v) => {
-        this.categories = v;
+        this.categories = v.sort((a: any, b: any) => a.category_id - b.category_id);
         this.current_date = new Date();
       },
       error: (e) => {
