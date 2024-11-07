@@ -20,4 +20,18 @@
     text-align: center;
 }
 
+.col-flechas{
+    color:rgb(248, 98, 28);
+}
+
+.carousel-control-next-icon{
+    filter: drop-shadow(1px 1px 1px rgb(0, 0, 0)); 
+}
+
+.carousel-control-prev-icon{
+    filter: drop-shadow(1px 1px 1px rgb(0, 0, 0)); 
+}
+
+
+
 

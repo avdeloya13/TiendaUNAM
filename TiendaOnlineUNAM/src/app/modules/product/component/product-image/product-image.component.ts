@@ -180,5 +180,6 @@ export class ProductImageComponent {
 
   hideModalForm(){
     $("#modalForm").modal("hide");
+    $('.modal-backdrop').remove();
   }
 }

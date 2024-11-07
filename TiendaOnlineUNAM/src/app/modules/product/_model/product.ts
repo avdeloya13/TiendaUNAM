@@ -10,5 +10,4 @@ export class Product{
     category_id: number = 0;
     category: string = "";
     status: number = 0;
-    image: ProductImage = new ProductImage();
 }
