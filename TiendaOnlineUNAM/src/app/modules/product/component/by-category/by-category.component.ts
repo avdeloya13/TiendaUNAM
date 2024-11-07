@@ -3,13 +3,13 @@ import { ByCategoryService } from '../../_service/by-category.service';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductService } from '../../_service/product.service';
 import { CategoryService } from '../../_service/category.service';
-import { Category } from '../../_model/category';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { SharedModule } from '../../../../shared/shared-module';
 
 @Component({
   selector: 'app-by-category',
   standalone: true,
-  imports: [],
+  imports: [SharedModule],
   templateUrl: './by-category.component.html',
   styleUrl: './by-category.component.css'
 })

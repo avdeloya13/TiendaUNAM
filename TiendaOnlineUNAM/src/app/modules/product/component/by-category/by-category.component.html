@@ -1,11 +1,8 @@
-<table class="table table-striped">
+<!--<table class="table table-striped">
     <thead>
       <tr class="table-primary">
         <th scope="col">Category_Id</th>
         <th scope="col">Category</th>
-        <th scope="col">Tag</th>
-        <th scope="col">Estatus</th>
-        <th scope="col">Más</th>
       </tr>
     </thead>
     <tbody>
@@ -15,4 +12,35 @@
             <td>{{dtoprod.product}} </td>
       }
   </tbody>
-  </table>
+  </table>-->
+
+  <div class="row">
+    @for (dtoprod of product_category; track dtoprod; let i = $index) {
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+        <div class="card h-100">
+
+      <div class="col mb-5">
+        <div class="card h-100">
+          <!-- Imagen del producto -->
+          <img class="card-img-top" src="assets/1119353676.avif" alt="assets/no-product-image.png" />
+          
+          <!-- Detalles del producto -->
+          <div class="card-body p-4">
+            <div class="text-center">
+              <!-- Nombre del producto -->
+              <h5 class="fw-bolder">{{ dtoprod.product }}</h5>
+              <!-- Precio del producto -->
+              {{ dtoprod.price | currency: 'USD'}}
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+    }
+  </div>
+  
+
+  
