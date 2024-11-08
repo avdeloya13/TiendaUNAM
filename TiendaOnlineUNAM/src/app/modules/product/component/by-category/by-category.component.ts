@@ -3,7 +3,6 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductService } from '../../_service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedModule } from '../../../../shared/shared-module';
-import { ProductImageService } from '../../_service/product-image.service';
 
 @Component({
   selector: 'app-by-category',
@@ -23,7 +22,6 @@ export class ByCategoryComponent {
   productImgs: any[] = [];
 
   constructor(private productService: ProductService,
-              private productimageService: ProductImageService,
               private route: ActivatedRoute,
               private router: Router){ }
 
@@ -32,19 +30,6 @@ export class ByCategoryComponent {
       this.id = params.get('id');
       if (this.id) {
         this.getProductsbyCategory();
-        this.getProductImage();
-      }
-    });
-  }
-
-  getProductImage(){
-    this.productimageService.getProductImage(this.id).subscribe({
-      next: (v) => {
-        console.log("Imágenes de productos:", v);
-        this.productImgs = v;
-      },
-      error: (e) => {
-        this.swal.errorMessage(e.error.message!);
       }
     });
   }
@@ -53,7 +38,7 @@ export class ByCategoryComponent {
     this.productService.getProductsByCategory(this.id).subscribe({
       next: (v) => {
         this.product_category = v;
-        console.log(v[0].image);
+        console.log(v);
       },
       error: (e) => {
         this.swal.errorMessage("No hay productos en la categoría");
