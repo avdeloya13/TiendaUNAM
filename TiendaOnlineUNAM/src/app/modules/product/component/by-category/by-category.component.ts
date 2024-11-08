@@ -50,9 +50,7 @@ export class ByCategoryComponent {
   }
 
   getProductImageById(productId: number): string {
-    
-    const productImages = this.productImgs.filter(img => img.product_id === productId);
-
+    const productImages = this.productImgs.filter((img) => img.product_id === productId);
     return productImages.length > 0 ? productImages[0].image : 'assets/no-product-image.png';
   }
 

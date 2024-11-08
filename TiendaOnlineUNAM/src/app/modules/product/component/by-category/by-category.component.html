@@ -1,33 +1,29 @@
-<div class="row">
-
-  @for (dtoprod of product_category; track dtoprod;) {
-
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5 ret">
-                              <!-- De momento redirige a product en lo que está la vista que debe ser-->
-      <div class="card h-100" (click)="redirect(['product'])">
-
-        <!--<img class="card-img-top img-button" src="assets/1119353676.avif" alt='assets/no-product-image.png'/> -->
-
-         <!-- Buscar la imagen correspondiente a este producto -->
-         <img class="card-img-top img-button" [src]="getProductImageById(dtoprod.product_id)"/>
-        
-        <div class="card-body p-4 ">
-                                     
-          <div class="text-center" >
-            <!-- Nombre del producto -->
-            <h5 class="fw-bolder">{{ dtoprod.product }}</h5>
-
-            
-
-            <!-- Precio del producto -->
-            {{ dtoprod.price | currency: 'USD'}}
+<div class="card">
+  <div class="row">
+  
+    @for (dtoprod of product_category; track dtoprod;) {
+  
+      <div class="col-md-3 mb-5 ret">
+                                <!-- De momento redirige a product en lo que está la vista que debe ser-->
+        <div class="cardd h-100" (click)="redirect(['product'])">
+  
+          <!--<img class="card-img-top img-button" src="assets/1119353676.avif" alt='assets/no-product-image.png'/> -->
+  
+          <img class="card-img-top img-button" [src]="getProductImageById(dtoprod.product_id)"/>
+          
+          <div class="card-body p-4 ">
+                                       
+            <div class="text-center" >
+              <!-- Nombre del producto -->
+              <h5 class="fw-bolder">{{ dtoprod.product }}</h5>
+  
+              <!-- Precio del producto -->
+              {{ dtoprod.price | currency: 'USD'}}
+            </div>
           </div>
+  
         </div>
-
       </div>
-    </div>
-  } 
-</div>
-
-
-
+    } 
+  </div>
+  </div>
