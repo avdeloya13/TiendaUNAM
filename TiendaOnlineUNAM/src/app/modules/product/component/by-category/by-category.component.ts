@@ -49,17 +49,11 @@ export class ByCategoryComponent {
     });
   }
 
-  getProductImageById(productId: number): string {
-    const productImages = this.productImgs.filter((img) => img.product_id === productId);
-    return productImages.length > 0 ? productImages[0].image : 'assets/no-product-image.png';
-  }
-
   getProductsbyCategory(){
     this.productService.getProductsByCategory(this.id).subscribe({
       next: (v) => {
-        //this.product_category = this.productService.getProducts();
         this.product_category = v;
-        console.log(v);
+        console.log(v[0].image);
       },
       error: (e) => {
         this.swal.errorMessage("No hay productos en la categoría");
