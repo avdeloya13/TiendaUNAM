@@ -3,7 +3,7 @@ import { ByCategoryService } from '../../_service/by-category.service';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductService } from '../../_service/product.service';
 import { CategoryService } from '../../_service/category.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedModule } from '../../../../shared/shared-module';
 
 @Component({
@@ -21,20 +21,18 @@ export class ByCategoryComponent {
 
   id: any = '';
 
-  constructor(private bycategoryService:ByCategoryService,
-              private productService: ProductService,
+  constructor(private productService: ProductService,
               private route: ActivatedRoute,
-              private categoryService: CategoryService){
-
-  }
+              private router: Router,
+              private categoryService: CategoryService){ }
 
   ngOnInit():void{
-  
-    this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
-    if (this.id) {
-      this.getProductsbyCategory();
-    }
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id');
+      if (this.id) {
+        this.getProductsbyCategory();
+      }
+    });
   }
 
   getProductsbyCategory(){
@@ -49,4 +47,9 @@ export class ByCategoryComponent {
       } 
     });
   }
+
+  redirect(url: string[]) {
+    this.router.navigate(url);
+  }
+
 }
