@@ -20,6 +20,7 @@ declare var $: any;
   styleUrls: ['./product-image.component.css']
 })
 export class ProductImageComponent {
+
   product: Product = new Product();
   gtin: string | null = null;
   swal: SwalMessages = new SwalMessages();
@@ -29,6 +30,7 @@ export class ProductImageComponent {
   submitted = false;
   isAdmin = false;
   categoria: number = 0;
+  cantidad_productos: number = 1; 
 
   constructor(
     private productService: ProductService,
@@ -197,5 +199,17 @@ export class ProductImageComponent {
 
   showCategoriesby(id: number) {
     this.router.navigate(['categoria', id]);
+  }
+
+  incrementQuantity() {
+    if (this.cantidad_productos < this.product.stock) { 
+      this.cantidad_productos++;
+    }
+  }
+
+  decrementQuantity() {
+    if (this.cantidad_productos > 1) { 
+      this.cantidad_productos--;
+    }
   }
 }

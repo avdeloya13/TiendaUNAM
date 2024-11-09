@@ -210,6 +210,12 @@
                                     <td>{{ product.gtin }}</td>
                                 </tr>
                                 }
+                                @if(isAdmin == false){
+                                    <tr>
+                                        <th class="col-md-4">Código del producto:</th>
+                                        <td>{{ product.gtin }}</td>
+                                    </tr>
+                                    }
                                 <tr>
                                     <th class="col-md-4">Descripción</th>
                                     <td>{{ product.description }}</td>
@@ -218,16 +224,27 @@
                                     <th class="col-md-4">Precio</th>
                                     <td>{{ product.price | currency }}</td>
                                 </tr>
+                                @if(isAdmin){
                                 <tr>
                                     <th class="col-md-4">Stock</th>
                                     <td>{{ product.stock }}</td>
                                 </tr>
+                                }
                                 <tr>
                                     <th class="col-md-4">Categoría</th>
                                     <td>{{ product.category }}</td>
                                 </tr>
                             </tbody>
                         </table>
+
+                        @if(isAdmin == false){
+                        <div class="quantity-selector">
+                            <label for="quantity"> <th class="col-md-4">Cantidad</th></label>
+                            <input type="number" id="quantity" [(ngModel)]="cantidad_productos" min="1" max="product.stock" />
+                            <button (click)="decrementQuantity()" class="btn-quantity">-</button>
+                            <button (click)="incrementQuantity()" class="btn-quantity">+</button>
+                        </div>
+                        }
                     </div>
                 </div>
             </div>
