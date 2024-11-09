@@ -24,6 +24,10 @@
     color:rgb(248, 98, 28);
 }
 
+.btn-card{
+    padding: 5px 10px;
+}
+
 .carousel-control-next-icon{
     filter: drop-shadow(1px 1px 1px rgb(0, 0, 0)); 
 }

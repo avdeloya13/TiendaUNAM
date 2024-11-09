@@ -249,18 +249,13 @@
                                         </div>
                                     }
                                 </tr>
-
-                                <tr>
-                                    @if(isAdmin == false){
-                                    <a class="btn btn-primary btn-xl rounded-pill mt-5" (click)="redirect(['categoria/1'])">Agregar al carrito</a>
-                                    }
-                                </tr>
-                                
                             </tbody>
                         </table>
-
                     </div>
                 </div>
+                @if(isAdmin == false){
+                    <button type="button" class="btn btn-primary"> Agregar al carrito </button>
+                }
             </div>
         </div>
     </div>
