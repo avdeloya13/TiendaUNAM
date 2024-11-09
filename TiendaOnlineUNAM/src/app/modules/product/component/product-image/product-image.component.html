@@ -2,10 +2,21 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md ret">
+
+                @if(isAdmin == false){ 
+                    <span class="btn-return" (click)="showCategoriesby(categoria)">
+                        <i class="ph ph-arrow-circle-left icon-text-button"></i>
+                        Regresar
+                    </span>
+                }
+
+                @if(isAdmin){
                 <span class="btn-return" (click)="redirect(['product'])">
                     <i class="ph ph-arrow-circle-left icon-text-button"></i>
                     Regresar
                 </span>
+                }
+
             </div>
 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalForm">
@@ -192,10 +203,13 @@
 
                         <table class="table">
                             <tbody>
+
+                                @if(isAdmin){
                                 <tr>
                                     <th class="col-md-4">GTIN</th>
                                     <td>{{ product.gtin }}</td>
                                 </tr>
+                                }
                                 <tr>
                                     <th class="col-md-4">Descripción</th>
                                     <td>{{ product.description }}</td>

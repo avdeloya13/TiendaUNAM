@@ -27,6 +27,8 @@ export class ProductImageComponent {
   categories: any[] = []; 
   form: FormGroup;
   submitted = false;
+  isAdmin = false;
+  categoria: number = 0;
 
   constructor(
     private productService: ProductService,
@@ -54,6 +56,15 @@ export class ProductImageComponent {
       this.getProductImages();
       this.loadCategories();
     }
+
+    if(localStorage.getItem("user")){
+      let user = JSON.parse(localStorage.getItem("user")!);
+      if(user.rol == "ADMIN"){
+        this.isAdmin = true;
+      }else{
+        this.isAdmin = false;
+      }
+    }
   }
 
   loadCategories() {
@@ -73,6 +84,7 @@ export class ProductImageComponent {
         this.product = v;
         this.populateForm();
         this.getProductImages();
+        this.categoria = v.category_id;
       },
       error: (e) => {
         this.swal.errorMessage(e.error.message!);
@@ -181,5 +193,9 @@ export class ProductImageComponent {
   hideModalForm(){
     $("#modalForm").modal("hide");
     $('.modal-backdrop').remove();
+  }
+
+  showCategoriesby(id: number) {
+    this.router.navigate(['categoria', id]);
   }
 }

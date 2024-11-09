@@ -46,8 +46,8 @@ export class ByCategoryComponent {
     });
   }
 
-  redirect(url: string[]) {
-    this.router.navigate(url);
+  showProduct(gtin: string) {
+    this.router.navigate(['product', gtin]);
   }
 
 }
