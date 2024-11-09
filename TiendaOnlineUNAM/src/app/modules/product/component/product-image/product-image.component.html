@@ -205,46 +205,60 @@
                             <tbody>
 
                                 @if(isAdmin){
-                                <tr>
-                                    <th class="col-md-4">GTIN</th>
-                                    <td>{{ product.gtin }}</td>
-                                </tr>
-                                }
-                                @if(isAdmin == false){
                                     <tr>
-                                        <th class="col-md-4">Código del producto:</th>
+                                        <th class="col-md-4">GTIN</th>
                                         <td>{{ product.gtin }}</td>
                                     </tr>
                                     }
+                                    @if(isAdmin == false){
+                                        <tr>
+                                            <th class="col-md-4">Código del producto</th>
+                                            <td>{{ product.gtin }}</td>
+                                        </tr>
+                                }
+
+                                <tr>
+                                    <th class="col-md-4">Precio</th>
+                                    <td>{{ product.price | currency }}</td>
+
+                                <tr>
+                                    <th class="col-md-4">Categoría</th>
+                                    <td>{{ product.category }}</td>
+
+                                </tr>
+    
                                 <tr>
                                     <th class="col-md-4">Descripción</th>
                                     <td>{{ product.description }}</td>
                                 </tr>
-                                <tr>
-                                    <th class="col-md-4">Precio</th>
-                                    <td>{{ product.price | currency }}</td>
-                                </tr>
+                                
                                 @if(isAdmin){
                                 <tr>
                                     <th class="col-md-4">Stock</th>
                                     <td>{{ product.stock }}</td>
                                 </tr>
                                 }
+
                                 <tr>
-                                    <th class="col-md-4">Categoría</th>
-                                    <td>{{ product.category }}</td>
+                                    @if(isAdmin == false){
+                                        <div class="quantity-selector">
+                                            <label for="quantity"> <th class="col-md-4">Cantidad</th></label>
+                                            <input type="number" id="quantity" [(ngModel)]="cantidad_productos" min="1" max="product.stock" />
+                                            <button (click)="decrementQuantity()" class="btn-quantity">-</button>
+                                            <button (click)="incrementQuantity()" class="btn-quantity">+</button>
+                                        </div>
+                                    }
                                 </tr>
+
+                                <tr>
+                                    @if(isAdmin == false){
+                                    <a class="btn btn-primary btn-xl rounded-pill mt-5" (click)="redirect(['categoria/1'])">Agregar al carrito</a>
+                                    }
+                                </tr>
+                                
                             </tbody>
                         </table>
 
-                        @if(isAdmin == false){
-                        <div class="quantity-selector">
-                            <label for="quantity"> <th class="col-md-4">Cantidad</th></label>
-                            <input type="number" id="quantity" [(ngModel)]="cantidad_productos" min="1" max="product.stock" />
-                            <button (click)="decrementQuantity()" class="btn-quantity">-</button>
-                            <button (click)="incrementQuantity()" class="btn-quantity">+</button>
-                        </div>
-                        }
                     </div>
                 </div>
             </div>
