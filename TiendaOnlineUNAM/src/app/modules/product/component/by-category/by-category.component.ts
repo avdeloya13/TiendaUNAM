@@ -49,5 +49,4 @@ export class ByCategoryComponent {
   showProduct(gtin: string) {
     this.router.navigate(['product', gtin]);
   }
-
 }
