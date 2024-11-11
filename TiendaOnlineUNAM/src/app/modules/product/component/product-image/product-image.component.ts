@@ -216,20 +216,41 @@ export class ProductImageComponent {
     }
   }
 
+  updateProductStock(gtin: string, stock: number){
+    this.productService.updateProductStock(gtin, stock).subscribe({
+      next: (v) => {
+        this.swal.successMessage("Stock actualizado con éxito!");
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage("No se pudo actualizar el stock.");
+      }
+    })
+  }
+
   addToCart(gtin: string, quantity: number) {
+
+    if (quantity > this.product.stock) {
+      this.swal.errorMessage("La cantidad solicitada excede el stock disponible.");
+      return;
+    } else {
+
     let cart:Cart = new Cart();
     cart.gtin = gtin;
     cart.quantity = quantity;
 
+    this.updateProductStock(gtin, this.product.stock - quantity);
+
     this.cartService.addToCart(cart).subscribe({
       next: (v) => {
-        console.log(v);
         this.swal.successMessage("Producto agregado al carrito con éxito!");
+        console.log(cart);
       },
       error: (e) => {
         console.log(e);
         this.swal.errorMessage("No se pudo agregar al carrito.");
       }
     });
+    } 
   }
 }
