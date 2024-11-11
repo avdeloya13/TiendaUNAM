@@ -3,6 +3,7 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductService } from '../../_service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedModule } from '../../../../shared/shared-module';
+import { CategoryService } from '../../_service/category.service';
 
 @Component({
   selector: 'app-by-category',
@@ -14,15 +15,13 @@ import { SharedModule } from '../../../../shared/shared-module';
 export class ByCategoryComponent {
 
   swal: SwalMessages = new SwalMessages();
-
   product_category: any =[];
-
   id: any = '';
-
-  productImgs: any[] = [];
+  category: any = '';
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
+              private categoryService: CategoryService,
               private router: Router){ }
 
   ngOnInit():void{
@@ -30,6 +29,7 @@ export class ByCategoryComponent {
       this.id = params.get('id');
       if (this.id) {
         this.getProductsbyCategory();
+        this.getCategory();
       }
     });
   }
@@ -48,5 +48,16 @@ export class ByCategoryComponent {
 
   showProduct(gtin: string) {
     this.router.navigate(['product', gtin]);
+  }
+
+  getCategory(){
+    this.categoryService.getCategory(this.id).subscribe({
+      next: (v) => {
+        this.category = v;
+      },
+      error: (e) => {
+        this.swal.errorMessage("No se pudo obtener la categoría.");
+      } 
+    });
   }
 }

@@ -4,6 +4,7 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { InvoiceService } from '../../_service/invoice.service';
 import { SharedModule } from '../../../../shared/shared-module';
 import { Router } from '@angular/router';
+import { CartService } from '../../_service/cart.service';
 
 @Component({
   selector: 'app-invoice',
@@ -20,13 +21,17 @@ export class InvoiceComponent {
   loading = false; // loading request 
   swal: SwalMessages = new SwalMessages(); // swal messages
 
+  cart: any =[];
+
   constructor(
     private invoiceService: InvoiceService,
     private router: Router,
+    private cartService: CartService
   ){}
 
   ngOnInit(){
     this.getInvoices();
+    this.addToCart();
   }
 
   getInvoices(){
@@ -40,6 +45,19 @@ export class InvoiceComponent {
       error: (e) => {
         console.error(e);
         this.loading = false;
+      }
+    });
+  }
+
+  addToCart(){
+    this.cartService.addToCart(this.cart).subscribe({
+      next: (v) => {
+        this.cart = v;
+        console.log(v);
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage("No se pudo agregar al carrito");
       }
     });
   }
