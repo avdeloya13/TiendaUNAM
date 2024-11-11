@@ -9,6 +9,8 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductImageService } from '../../_service/product-image.service';
 import { NgxPhotoEditorService } from 'ngx-photo-editor';
 import { ProductImage } from '../../_model/product-image';
+import { CartService } from '../../../invoice/_service/cart.service';
+import { Cart } from '../../../invoice/_model/cart';
 
 declare var $: any;
 
@@ -39,7 +41,8 @@ export class ProductImageComponent {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private ngxService: NgxPhotoEditorService
+    private ngxService: NgxPhotoEditorService,
+    private cartService: CartService
   ) {
     this.form = this.formBuilder.group({
       gtin: ['', Validators.required],
@@ -211,5 +214,22 @@ export class ProductImageComponent {
     if (this.cantidad_productos > 1) { 
       this.cantidad_productos--;
     }
+  }
+
+  addToCart(gtin: string, quantity: number) {
+    let cart:Cart = new Cart();
+    cart.gtin = gtin;
+    cart.quantity = quantity;
+
+    this.cartService.addToCart(cart).subscribe({
+      next: (v) => {
+        console.log(v);
+        this.swal.successMessage("Producto agregado al carrito con éxito!");
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage("No se pudo agregar al carrito.");
+      }
+    });
   }
 }

@@ -18,4 +18,8 @@ export class HomeComponent {
     this.router.navigate(url);
   }
 
+  showProduct(gtin: string) {
+    this.router.navigate(['product', gtin]);
+  }
+  
 }

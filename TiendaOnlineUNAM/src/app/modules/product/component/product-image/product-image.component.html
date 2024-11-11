@@ -268,18 +268,18 @@
                                                 <button (click)="incrementQuantity()" class="btn-quantity">+</button>
                                             </div>
                                         </tr>
+
+                                        <button type="button" class="btn btn-primary add-to-cart-btn" (click)="addToCart(product.gtin, 1)">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                            Agregar al carrito
+                                        </button>
                                         }
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        @if(isAdmin == false){
-                        <button type="button" class="btn btn-primary add-to-cart-btn">
-                            <i class="fa-solid fa-cart-plus"></i>
-                            Agregar al carrito
-                        </button>
-                        }
+
                     </div>
                 </div>
             </div>

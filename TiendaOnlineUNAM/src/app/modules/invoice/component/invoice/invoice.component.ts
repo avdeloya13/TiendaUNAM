@@ -21,8 +21,6 @@ export class InvoiceComponent {
   loading = false; // loading request 
   swal: SwalMessages = new SwalMessages(); // swal messages
 
-  cart: any =[];
-
   constructor(
     private invoiceService: InvoiceService,
     private router: Router,
@@ -31,7 +29,6 @@ export class InvoiceComponent {
 
   ngOnInit(){
     this.getInvoices();
-    this.addToCart();
   }
 
   getInvoices(){
@@ -45,19 +42,6 @@ export class InvoiceComponent {
       error: (e) => {
         console.error(e);
         this.loading = false;
-      }
-    });
-  }
-
-  addToCart(){
-    this.cartService.addToCart(this.cart).subscribe({
-      next: (v) => {
-        this.cart = v;
-        console.log(v);
-      },
-      error: (e) => {
-        console.log(e);
-        this.swal.errorMessage("No se pudo agregar al carrito");
       }
     });
   }
