@@ -37,20 +37,25 @@
     align-items: center;
   }
   
-  .quantity-selector label {
-    margin-right: 10px;
-  }
-  
-  .quantity-selector input[type="number"] {
-    width: 60px;
-    text-align: center;
-    margin: 0 5px;
-  }
-  
-  .btn-quantity {
-    padding: 5px 10px;
-    cursor: pointer;
-  }
+.quantity-selector label {
+  margin-right: 10px;
+}
+
+.quantity-selector input[type="number"] {
+  width: 60px;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.btn-quantity {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.add-to-cart-btn {
+  display: block;
+  margin: 1rem auto 0;
+}
 
 
 

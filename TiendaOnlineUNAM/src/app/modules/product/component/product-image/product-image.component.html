@@ -19,10 +19,11 @@
 
             </div>
 
+            @if(isAdmin){
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalForm">
                 Editar producto
             </button>
-
+            }
 
             <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="modalForm">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -161,7 +162,7 @@
                                 <div class="carousel-inner">
                                     <div *ngFor="let prod of productImgs; let i = index" class="carousel-item"
                                         [class.active]="i === 0">
-                                        <div class="carousel-del">
+                                        <div class="carousel-del" *ngIf="isAdmin">
                                             <a (click)="deleteProductImage(prod.product_image_id)" class="trash"><i
                                                     class="fas fa-trash-alt cursor-pointer ret"></i></a>
                                         </div>
@@ -274,7 +275,10 @@
                             </div>
                         </div>
                         @if(isAdmin == false){
-                        <button type="button" class="btn btn-primary"> Agregar al carrito </button>
+                        <button type="button" class="btn btn-primary add-to-cart-btn">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Agregar al carrito
+                        </button>
                         }
                     </div>
                 </div>
