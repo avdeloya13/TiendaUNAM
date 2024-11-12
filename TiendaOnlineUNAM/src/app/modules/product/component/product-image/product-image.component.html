@@ -240,8 +240,8 @@
 
                                         <tr>
                                             <th class="col-md-4">Precio</th>
-                                            <td>{{ product.price | currency }}</td>
-
+                                            <td class="price">{{ product.price | currency }}</td>
+                                        </tr>
                                         <tr>
                                             <th class="col-md-4">Categoría</th>
                                             <td>{{ product.category }}</td>
@@ -272,18 +272,19 @@
                                                 <button (click)="incrementQuantity()" class="btn-quantity">+</button>
                                             </div>
                                         </tr>
-
-                                        <button type="button" class="btn btn-primary add-to-cart-btn" (click)="addToCart(product.gtin, cantidad_productos)">
-                                            <i class="fa-solid fa-cart-plus"></i>
-                                            Agregar al carrito
-                                        </button>
                                         }
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
+                        @if(isAdmin == false){
+                        <button type="button" class="btn btn-primary add-to-cart-btn"
+                            (click)="addToCart(product.gtin, cantidad_productos)">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Agregar al carrito
+                        </button>
+                        }
                     </div>
                 </div>
             </div>
