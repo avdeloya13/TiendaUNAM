@@ -267,7 +267,7 @@
                                                     <th class="col-md-4">Cantidad</th>
                                                 </label>
                                                 <input type="number" id="quantity" [(ngModel)]="cantidad_productos"
-                                                    min="1" max="product.stock" />
+                                                    min="0" max="product.stock" />
                                                 <button (click)="decrementQuantity()" class="btn-quantity">-</button>
                                                 <button (click)="incrementQuantity()" class="btn-quantity">+</button>
                                             </div>

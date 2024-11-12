@@ -18,12 +18,9 @@ export class CategoryComponent {
   
   form: FormGroup;
   categories: any = [];
-
   submitted = false;
   categoryUpdate: number = 0;
-
   swal: SwalMessages = new SwalMessages();
-
   current_date = new Date();
 
   constructor(private categoryService:CategoryService, private formBuilder: FormBuilder){ 

@@ -216,41 +216,42 @@ export class ProductImageComponent {
     }
   }
 
-  updateProductStock(gtin: string, stock: number){
-    this.productService.updateProductStock(gtin, stock).subscribe({
-      next: (v) => {
-        this.swal.successMessage("Stock actualizado con éxito!");
+  updateStocks(gtin: string, stock: number) {
+    this.cartService.getCart().subscribe({
+      next: (cartItems) => {
+        if (cartItems.length > 0) {
+          for(let prod of cartItems){
+            if(prod.gtin == this.product.gtin){
+              this.product.stock -= prod.quantity;
+             // this.swal.successMessage("Stock actualizado con éxito!");
+            }
+          }
+        } else {
+          this.swal.errorMessage("Carrito vacío.");
+        }
       },
       error: (e) => {
-        console.log(e);
+        console.error(e);
         this.swal.errorMessage("No se pudo actualizar el stock.");
       }
-    })
+    });
   }
-
+  
   addToCart(gtin: string, quantity: number) {
-
-    if (quantity > this.product.stock) {
-      this.swal.errorMessage("La cantidad solicitada excede el stock disponible.");
-      return;
-    } else {
-
     let cart:Cart = new Cart();
     cart.gtin = gtin;
     cart.quantity = quantity;
 
-    this.updateProductStock(gtin, this.product.stock - quantity);
-
     this.cartService.addToCart(cart).subscribe({
       next: (v) => {
-        this.swal.successMessage("Producto agregado al carrito con éxito!");
+        this.swal.successMessage("Producto agregado al carrito!");
         console.log(cart);
+        this.updateStocks(gtin, quantity);
       },
       error: (e) => {
         console.log(e);
-        this.swal.errorMessage("No se pudo agregar al carrito.");
+        this.swal.errorMessage("No hay suficiente stock.");
       }
     });
-    } 
   }
 }

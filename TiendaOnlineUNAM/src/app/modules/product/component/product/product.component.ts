@@ -20,11 +20,8 @@ declare var $: any;
 export class ProductComponent {
   
   products: DtoProductList[] = [];
-
   categories: Category[] = [];
-
   form: FormGroup;
-  
   current_date = new Date();
   loading = false;
   submitted = false;

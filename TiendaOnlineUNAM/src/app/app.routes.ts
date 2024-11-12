@@ -39,7 +39,6 @@ export const routes: Routes = [
         component: ProductImageComponent
     },
     {
-        //path: 'product/category/:id',
         path: 'categoria/:id',
         component: ByCategoryComponent
     },
