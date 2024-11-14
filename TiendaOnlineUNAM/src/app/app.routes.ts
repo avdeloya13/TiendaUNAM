@@ -8,12 +8,15 @@ import { SecuredComponent } from './modules/auth/component/secured/secured.compo
 import { authenticationGuard } from './modules/auth/authentication.guard';
 import { ProductImageComponent } from './modules/product/component/product-image/product-image.component';
 import { ProductComponent } from './modules/product/component/product/product.component';
+import { HomeComponent } from './modules/layout/component/home/home.component';
+import { InvoiceComponent } from './modules/invoice/component/invoice/invoice.component';
+import { ByCategoryComponent } from './modules/product/component/by-category/by-category.component';
 
 export const routes: Routes = [
+    
     {
         path: '',
-        redirectTo: '/categoria',
-        pathMatch: 'full'
+        component: HomeComponent 
     },
     {
         path: 'categoria',
@@ -36,9 +39,15 @@ export const routes: Routes = [
         component: ProductImageComponent
     },
     {
-        path: 'secured',
-        component: SecuredComponent, 
-        canActivate: [authenticationGuard]
+        path: 'categoria/:id',
+        component: ByCategoryComponent
+    },
+    //{
+       // path: 'secured',
+      //  component: SecuredComponent, 
+        //canActivate: [authenticationGuard]
+    //},
+    {   path: 'invoice',
+        component: InvoiceComponent 
     }
-
 ];

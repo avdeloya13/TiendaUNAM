@@ -1,5 +1,5 @@
 .card{
-    margin-top: 16%;
+    margin-top: 4%;
 }
 
 .ret{
@@ -12,4 +12,62 @@
     right: 10px; 
     z-index: 10; 
 }
+
+.col-letras{
+    color:rgb(248, 98, 28);
+    font-size: 20px; 
+    font-weight: bold;
+    text-align: center;
+}
+
+.col-flechas{
+    color:rgb(248, 98, 28);
+}
+
+.carousel-control-next-icon{
+    filter: drop-shadow(1px 1px 1px rgb(0, 0, 0)); 
+}
+
+.carousel-control-prev-icon{
+    filter: drop-shadow(1px 1px 1px rgb(0, 0, 0)); 
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+  }
+  
+.quantity-selector label {
+  margin-right: 10px;
+}
+
+.quantity-selector input[type="number"] {
+  width: 60px;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.btn-quantity {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.add-to-cart-btn {
+  display: block;
+  margin: 1rem auto 0;
+}
+
+.cart-icon{
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.price{
+  color: rgb(168, 0, 146); 
+  font-weight: bold; /* negritas */
+}
+
+
+
 

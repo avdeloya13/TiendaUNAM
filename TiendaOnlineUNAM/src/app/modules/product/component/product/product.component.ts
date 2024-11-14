@@ -20,11 +20,8 @@ declare var $: any;
 export class ProductComponent {
   
   products: DtoProductList[] = [];
-
   categories: Category[] = [];
-
   form: FormGroup;
-  
   current_date = new Date();
   loading = false;
   submitted = false;
@@ -53,7 +50,7 @@ export class ProductComponent {
 
   disableProduct(id: number){
     this.swal.confirmMessage.fire({
-      title: "Favor de confirmar la eliminación",
+      title: "Favor de confirmar la desactivación",
     }).then((result) => {
       if (result.isConfirmed) {
         this.productService.disableProduct(id).subscribe({

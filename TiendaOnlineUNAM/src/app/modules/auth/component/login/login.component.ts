@@ -32,11 +32,7 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-    if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/secured');
-    } else {
-      this.router.navigateByUrl('/login');
-    }
+    
   }
 
   public onLogin(): void {
@@ -51,6 +47,7 @@ export class LoginComponent {
             this.authenticationService.saveToken(token);
             this.authenticationService.addUserToLocalCache(response.body);
             this.router.navigateByUrl('/secured');
+            window.location.reload();
             this.showLoading = false; 
           }else{
             if (response.body === null) {
@@ -68,7 +65,7 @@ export class LoginComponent {
       )
     );
   }
-
+  
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }

@@ -9,6 +9,8 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductImageService } from '../../_service/product-image.service';
 import { NgxPhotoEditorService } from 'ngx-photo-editor';
 import { ProductImage } from '../../_model/product-image';
+import { CartService } from '../../../invoice/_service/cart.service';
+import { Cart } from '../../../invoice/_model/cart';
 
 declare var $: any;
 
@@ -20,6 +22,7 @@ declare var $: any;
   styleUrls: ['./product-image.component.css']
 })
 export class ProductImageComponent {
+
   product: Product = new Product();
   gtin: string | null = null;
   swal: SwalMessages = new SwalMessages();
@@ -27,6 +30,9 @@ export class ProductImageComponent {
   categories: any[] = []; 
   form: FormGroup;
   submitted = false;
+  isAdmin = false;
+  categoria: number = 0;
+  cantidad_productos: number = 1; 
 
   constructor(
     private productService: ProductService,
@@ -35,7 +41,8 @@ export class ProductImageComponent {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private ngxService: NgxPhotoEditorService
+    private ngxService: NgxPhotoEditorService,
+    private cartService: CartService
   ) {
     this.form = this.formBuilder.group({
       gtin: ['', Validators.required],
@@ -53,6 +60,15 @@ export class ProductImageComponent {
       this.getProduct();
       this.getProductImages();
       this.loadCategories();
+    }
+
+    if(localStorage.getItem("user")){
+      let user = JSON.parse(localStorage.getItem("user")!);
+      if(user.rol == "ADMIN"){
+        this.isAdmin = true;
+      }else{
+        this.isAdmin = false;
+      }
     }
   }
 
@@ -73,6 +89,7 @@ export class ProductImageComponent {
         this.product = v;
         this.populateForm();
         this.getProductImages();
+        this.categoria = v.category_id;
       },
       error: (e) => {
         this.swal.errorMessage(e.error.message!);
@@ -152,7 +169,10 @@ export class ProductImageComponent {
 
     this.productService.updateProduct(this.form.value, this.product.product_id).subscribe({
       next: (v) => {
+        this.getProduct();
+        this.hideModalForm();
         this.swal.successMessage("Producto actualizado con éxito!");
+        
       },
       error: (e) => {
         console.error(e);
@@ -173,5 +193,65 @@ export class ProductImageComponent {
     $("#modalForm").modal("show");
     this.form.reset();
     this.submitted = false;
+  }
+
+  hideModalForm(){
+    $("#modalForm").modal("hide");
+    $('.modal-backdrop').remove();
+  }
+
+  showCategoriesby(id: number) {
+    this.router.navigate(['categoria', id]);
+  }
+
+  incrementQuantity() {
+    if (this.cantidad_productos < this.product.stock) { 
+      this.cantidad_productos++;
+    }
+  }
+
+  decrementQuantity() {
+    if (this.cantidad_productos > 1) { 
+      this.cantidad_productos--;
+    }
+  }
+
+  updateStocks(gtin: string, stock: number) {
+    this.cartService.getCart().subscribe({
+      next: (cartItems) => {
+        if (cartItems.length > 0) {
+          for(let prod of cartItems){
+            if(prod.gtin == this.product.gtin){
+              this.product.stock -= prod.quantity;
+             // this.swal.successMessage("Stock actualizado con éxito!");
+            }
+          }
+        } else {
+          this.swal.errorMessage("Carrito vacío.");
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.swal.errorMessage("No se pudo actualizar el stock.");
+      }
+    });
+  }
+  
+  addToCart(gtin: string, quantity: number) {
+    let cart:Cart = new Cart();
+    cart.gtin = gtin;
+    cart.quantity = quantity;
+
+    this.cartService.addToCart(cart).subscribe({
+      next: (v) => {
+        this.swal.successMessage("Producto agregado al carrito!");
+        console.log(cart);
+        this.updateStocks(gtin, quantity);
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage("No hay suficiente stock.");
+      }
+    });
   }
 }

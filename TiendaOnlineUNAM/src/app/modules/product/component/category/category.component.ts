@@ -18,12 +18,9 @@ export class CategoryComponent {
   
   form: FormGroup;
   categories: any = [];
-
   submitted = false;
   categoryUpdate: number = 0;
-
   swal: SwalMessages = new SwalMessages();
-
   current_date = new Date();
 
   constructor(private categoryService:CategoryService, private formBuilder: FormBuilder){ 
@@ -58,7 +55,7 @@ export class CategoryComponent {
 
   disableCategory(id: number){
     this.swal.confirmMessage.fire({
-      title: "Esta seguro que/de ...",
+      title: "Favor de confirmar la desactivación",
     }).then((result) => {
       if (result.isConfirmed) {
         this.categoryService.disableCategory(id).subscribe({
@@ -77,7 +74,7 @@ export class CategoryComponent {
   getCategories(){
     this.categoryService.getCategories().subscribe({
       next: (v) => {
-        this.categories = v;
+        this.categories = v.sort((a: any, b: any) => a.category_id - b.category_id);
         this.current_date = new Date();
       },
       error: (e) => {
@@ -115,7 +112,7 @@ export class CategoryComponent {
     this.categoryService.updateCategory(this.form.value, this.categoryUpdate).subscribe({
       next: (v) => {
         this.getCategories();
-       // this.hideModalForm();
+        this.hideModalForm();
      
         this.categoryUpdate = 0;
         this.swal.successMessage("La categoría ha sido actualizada");
