@@ -95,6 +95,9 @@ export class ProductImageComponent {
         this.populateForm();
         this.getProductImages();
         this.categoria = v.category_id;
+        if(this.product.stock < 1){
+          this.swal.infoMessage("Producto agotado.");
+        }
       },
       error: (e) => {
         this.swal.errorMessage(e.error.message!);

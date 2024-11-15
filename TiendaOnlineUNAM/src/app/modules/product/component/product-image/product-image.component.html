@@ -19,7 +19,7 @@
 
             </div>
 
-            
+
 
             <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="modalForm">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -256,27 +256,28 @@
                                         </tr>
                                         }
 
-                                        
+                                       
 
                                     </tbody>
                                 </table>
 
                             </div>
                         </div>
+
                         @if(isAdmin == false){
-                                <div class="quantity-selector">
-                                    <label for="quantity">
-                                        <th class="col-md-4">Cantidad</th>
-                                    </label>
-
-                                    <button type="button" class="btn btn-primary" (click)="decrementQuantity()" class="btn-quantity">-</button>
-
-                                    <input type="number" id="quantity" [(ngModel)]="cantidad_productos"
-                                        min="1" max="product.stock" />
+                            <tr>
+                                <td class="text-center">
+                                    <label for="quantity">Cantidad</label>
                                     
-                                    <button type="button" class="btn btn-primary" (click)="incrementQuantity()" class="btn-quantity">+</button>
-                                </div>
+                                    <div class="d-flex align-items-center quantity-selector">
+                                        <button type="button" class="btn btn-primary btn-quantity" (click)="decrementQuantity()">-</button>
+                                        <input type="number" id="quantity" [(ngModel)]="cantidad_productos" min="1" max="product.stock" class="mx-2" />
+                                        <button type="button" class="btn btn-primary btn-quantity" (click)="incrementQuantity()">+</button>
+                                    </div>
+                                </td>
+                            </tr>
                         }
+
                         @if(isAdmin == false){
                         <button type="button" class="btn btn-primary add-to-cart-btn"
                             (click)="addToCart(product.gtin, cantidad_productos)">
@@ -285,11 +286,12 @@
                         </button>
                         }
                         @if(isAdmin){
-                            <button type="button" class="btn btn-primary edit-prod" data-bs-toggle="modal" data-bs-target="#modalForm">
-                                <i class="ph ph-note-pencil icon-text-ul"></i>
-                                Editar producto
-                            </button>
-                            }
+                        <button type="button" class="btn btn-primary edit-prod" data-bs-toggle="modal"
+                            data-bs-target="#modalForm">
+                            <i class="ph ph-note-pencil icon-text-ul"></i>
+                            Editar producto
+                        </button>
+                        }
                     </div>
                 </div>
             </div>
