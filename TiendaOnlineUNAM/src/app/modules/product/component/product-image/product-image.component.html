@@ -194,7 +194,7 @@
                                     <div *ngFor="let prod of productImgs" class="carousel-item active">
                                         <div class="carousel-del" *ngIf="isAdmin">
                                             <a (click)="deleteProductImage(prod.product_image_id)" class="trash"><i
-                                                    class="fas fa-trash-alt cursor-pointer"></i></a>
+                                                    class="fas fa-trash-alt cursor-pointer ret"></i></a>
                                         </div>
                                         <img src="{{ prod.image !== '' ? prod.image : 'assets/no-product-image.png'}}"
                                             class="d-block w-100" alt="...">

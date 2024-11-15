@@ -1,5 +1,5 @@
 .card{
-    margin-top: 4%;
+    margin-top: 2%;
 }
 
 .body-content{
@@ -10,7 +10,7 @@
 
 .btn-primary{
     float: right;
-    margin: 1rem;
+    
 }
 
 .input-required{
@@ -30,4 +30,5 @@
     cursor: pointer;
     background-color: transparent;
     border-color: transparent;
-  }
+}
+  
