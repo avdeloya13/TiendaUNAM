@@ -19,11 +19,8 @@ declare var $: any;
 export class Navbar2Component {
 
   categories: Category[] = [];
-
   swal: SwalMessages = new SwalMessages(); 
-
   loggedIn = false;
-
   isAdmin = false;
 
   constructor(

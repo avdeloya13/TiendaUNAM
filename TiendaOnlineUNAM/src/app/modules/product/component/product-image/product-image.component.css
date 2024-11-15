@@ -42,17 +42,26 @@
 }
 
 .quantity-selector input[type="number"] {
-  width: 60px;
+  width: 90px;
+  height: 30px;
   text-align: center;
-  margin: 0 5px;
+  margin: 0 0px;
 }
 
 .btn-quantity {
-  padding: 5px 10px;
+  height: 30px; 
+  width: 40px; 
+  padding: 0; 
+  text-align: center;
   cursor: pointer;
 }
 
 .add-to-cart-btn {
+  display: block;
+  margin: 1rem auto 0;
+}
+
+.edit-prod {
   display: block;
   margin: 1rem auto 0;
 }
@@ -67,7 +76,5 @@
   color: rgb(168, 0, 146); 
   font-weight: bold; /* negritas */
 }
-
-
 
 

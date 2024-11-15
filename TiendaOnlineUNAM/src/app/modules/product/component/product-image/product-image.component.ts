@@ -31,6 +31,7 @@ export class ProductImageComponent {
   form: FormGroup;
   submitted = false;
   isAdmin = false;
+  loggedIn = false;
   categoria: number = 0;
   cantidad_productos: number = 1; 
 
@@ -55,6 +56,10 @@ export class ProductImageComponent {
   }
 
   ngOnInit() {
+    if(localStorage.getItem("token")){
+      this.loggedIn = true;
+    }
+
     this.gtin = this.route.snapshot.paramMap.get('gtin');
     if (this.gtin) {
       this.getProduct();
@@ -250,7 +255,12 @@ export class ProductImageComponent {
       },
       error: (e) => {
         console.log(e);
-        this.swal.errorMessage("No hay suficiente stock.");
+        if(this.loggedIn == false){
+          this.swal.errorMessage("No se pudo agregar al carrito.");
+        }
+        if(this.loggedIn == true){
+          this.swal.errorMessage("No hay suficiente stock.");
+        }  
       }
     });
   }
