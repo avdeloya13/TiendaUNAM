@@ -81,6 +81,11 @@
 }
 
 .tbl {
-  margin-top: 70px; 
+  margin-top: 50px; 
 }
 
+.product-title {
+  text-align: center;
+  vertical-align: middle; 
+  font-weight: bold; 
+}

@@ -231,20 +231,16 @@
                     <div class="col-md-8 tbl">
                         <div class="card">
                             <div class="card-body-product">
-                               <!-- <div class="product-title col-letras">
-                                    {{ product.product }}
-                                </div> -->
 
                                 <table class="table">
                                     <thead class="thead-dark">
                                         <tr class="table-primary">
-                                            <th> </th>
-                                            <th class="product-title col-letras">
+
+                                            <th class="product-title col-letras text-center align-middle" colspan="2">
                                                 {{ product.product }}
                                             </th>
-                                           
                                         </tr>
-                                      </thead>
+                                    </thead>
                                     <tbody>
                                         @if(isAdmin){
                                         <tr>
@@ -269,17 +265,17 @@
 
                                         </tr>
 
-                                        <tr>
-                                            <th class="col-md-4">Descripción</th>
-                                            <td>{{ product.description }}</td>
-                                        </tr>
-
                                         @if(isAdmin){
                                         <tr>
                                             <th class="col-md-4">Stock</th>
                                             <td>{{ product.stock }}</td>
                                         </tr>
                                         }
+
+                                        <tr>
+                                            <th class="col-md-4">Descripción</th>
+                                            <td>{{ product.description }}</td>
+                                        </tr>
 
                                         @if(isAdmin == false){
                                         <tr>
