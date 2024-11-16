@@ -1,0 +1,51 @@
+<div class="body-content">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col col-letras">
+                    <h4>Mi Carrito</h4>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+
+
+            @if(cartProducts.length == 0){
+            <div class="text-center table-empty">
+                <h4>No cuentas con productos agregados.</h4>
+            </div>
+            }@else {
+            <table class="table">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col" class="col-letras">Producto</th>
+                        <th scope="col" class="col-letras">Precio</th>
+                        <th scope="col" class="col-letras">Cantidad</th>
+                        <th scope="col" class="col-letras">Total</th>
+                        <th scope="col" class="col-letras">Más</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(cartprod of cartProducts; track cartprod; ) {
+                    <tr>
+                        <td> <img class="img-small" src="{{ cartprod.image !== 'data:image/png;base64,' ? cartprod.image : 'assets/no-product-image.png'}}"/> </td>
+                        <td>{{cartprod.product.price | currency: 'USD'}}</td>
+                        <td class="centered-cell">{{cartprod.quantity}}</td>
+                        <td></td>
+
+                        <td>
+                            <span class="btn-del"><!-- (click)="showCategoriesby(categoria)"-->
+                                <i class="fa-regular fa-trash-can"></i>
+                                Eliminar
+                            </span>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+            }
+        </div>
+    </div>
+</div>

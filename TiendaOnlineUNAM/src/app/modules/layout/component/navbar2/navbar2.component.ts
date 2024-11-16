@@ -6,6 +6,7 @@ import { SharedModule } from '../../../../shared/shared-module';
 import { AuthenticationService } from '../../../auth/_service/authentication.service';
 import { LoginComponent } from '../../../auth/component/login/login.component';
 import { RegisterComponent } from '../../../auth/component/register/register.component';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -25,7 +26,8 @@ export class Navbar2Component {
 
   constructor(
     private categoryService: CategoryService,
-    private servicioAutenticacion: AuthenticationService
+    private servicioAutenticacion: AuthenticationService,
+    private router: Router
   ){}
 
   getCategories(){
@@ -72,5 +74,8 @@ export class Navbar2Component {
     $("#registerModal").modal("show");
   }
 
+  redirect(url: string[]) {
+    this.router.navigate(url);
+  }
 
 }

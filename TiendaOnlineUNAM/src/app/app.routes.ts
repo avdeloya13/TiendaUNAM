@@ -11,6 +11,7 @@ import { ProductComponent } from './modules/product/component/product/product.co
 import { HomeComponent } from './modules/layout/component/home/home.component';
 import { InvoiceComponent } from './modules/invoice/component/invoice/invoice.component';
 import { ByCategoryComponent } from './modules/product/component/by-category/by-category.component';
+import { CartComponent } from './modules/invoice/component/cart/cart.component';
 
 export const routes: Routes = [
     
@@ -49,5 +50,8 @@ export const routes: Routes = [
     //},
     {   path: 'invoice',
         component: InvoiceComponent 
+    },
+    {   path: 'cart',
+        component: CartComponent
     }
 ];

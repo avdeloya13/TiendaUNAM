@@ -40,10 +40,8 @@
             aria-expanded="false">Administración</a>
           <div class="dropdown-menu nav-dropdown-menu">
             <a class="dropdown-item nav-dropdown-item" routerLink="/categoria">Categorías</a>
-            <!-- <a class="dropdown-item nav-dropdown-item" routerLink="/customer">Clientes</a> -->
             <a class="dropdown-item nav-dropdown-item" routerLink="/invoice">Facturas</a>
             <a class="dropdown-item nav-dropdown-item" routerLink="/product">Productos</a>
-            <!-- <a class="dropdown-item nav-dropdown-item" routerLink="/region">Regiones</a> -->
           </div>
         </li>
         }
@@ -62,9 +60,9 @@
       <!-- shopping cart  -->
 
       @if (isAdmin == false){
-      <a class="nav-link" routerLink="#" role="button">
+      <span class="nav-link" (click)="redirect(['cart'])">
         <i class="ph ph-shopping-cart i-nav"></i>
-      </a>
+      </span>
       }
 
       @if(loggedIn == false){
