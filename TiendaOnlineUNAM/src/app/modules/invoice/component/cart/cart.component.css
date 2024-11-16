@@ -12,11 +12,9 @@
 }
 
 .img-small{
-    width: 60px; 
-    height: 60px; 
-    object-fit: cover; 
-    display: block; 
-    margin: 0 auto;
+    width: 90px; 
+    height: auto; 
+    margin-right: 15px;
 }
 
 .centered-cell{

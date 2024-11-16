@@ -29,7 +29,7 @@
                 <tbody>
                     @for(cartprod of cartProducts; track cartprod; ) {
                     <tr>
-                        <td> <img class="img-small" src="{{ cartprod.image !== 'data:image/png;base64,' ? cartprod.image : 'assets/no-product-image.png'}}"/> </td>
+                        <td> <img class="img-small" src="{{ cartprod.image !== 'data:image/png;base64,' ? cartprod.image : 'assets/no-product-image.png'}}"/> {{cartprod.product.product}}</td>
                         <td>{{cartprod.product.price | currency: 'USD'}}</td>
                         <td class="centered-cell">{{cartprod.quantity}}</td>
                         <td></td>
