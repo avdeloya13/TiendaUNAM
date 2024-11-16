@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <div class="row">
+        <div class="row custom-margin">
             <div class="col-md ret">
 
                 @if(isAdmin == false){
@@ -17,7 +17,24 @@
                 </span>
                 }
 
+                @if(isAdmin == false){
+                <button type="button" class="btn btn-primary add-to-cart-btn"
+                    (click)="addToCart(product.gtin, cantidad_productos)">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Agregar al carrito
+                </button>
+                }
+
+                @if(isAdmin){
+                <button type="button" class="btn btn-primary edit-prod" data-bs-toggle="modal"
+                    data-bs-target="#modalForm">
+                    <i class="ph ph-note-pencil icon-text-ul"></i>
+                    Editar producto
+                </button>
+                }
             </div>
+
+
 
 
 
@@ -211,16 +228,24 @@
                     </div>
 
                     <!-- Información del producto -->
-                    <div class="col-md-8">
+                    <div class="col-md-8 tbl">
                         <div class="card">
                             <div class="card-body-product">
-                                <div class="product-title col-letras">
+                               <!-- <div class="product-title col-letras">
                                     {{ product.product }}
-                                </div>
+                                </div> -->
 
                                 <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr class="table-primary">
+                                            <th> </th>
+                                            <th class="product-title col-letras">
+                                                {{ product.product }}
+                                            </th>
+                                           
+                                        </tr>
+                                      </thead>
                                     <tbody>
-
                                         @if(isAdmin){
                                         <tr>
                                             <th class="col-md-4">GTIN</th>
@@ -256,7 +281,24 @@
                                         </tr>
                                         }
 
-                                       
+                                        @if(isAdmin == false){
+                                        <tr>
+                                            <th class="col-md-4">
+                                                <label for="quantity">Cantidad</label>
+                                            </th>
+
+                                            <td>
+                                                <div class="d-flex align-items-center quantity-selector">
+                                                    <button type="button" class="btn btn-primary btn-quantity"
+                                                        (click)="decrementQuantity()">-</button>
+                                                    <input type="number" id="quantity" [(ngModel)]="cantidad_productos"
+                                                        min="1" max="product.stock" class="mx-2" />
+                                                    <button type="button" class="btn btn-primary btn-quantity"
+                                                        (click)="incrementQuantity()">+</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        }
 
                                     </tbody>
                                 </table>
@@ -264,34 +306,6 @@
                             </div>
                         </div>
 
-                        @if(isAdmin == false){
-                            <tr>
-                                <td class="text-center">
-                                    <label for="quantity">Cantidad</label>
-                                    
-                                    <div class="d-flex align-items-center quantity-selector">
-                                        <button type="button" class="btn btn-primary btn-quantity" (click)="decrementQuantity()">-</button>
-                                        <input type="number" id="quantity" [(ngModel)]="cantidad_productos" min="1" max="product.stock" class="mx-2" />
-                                        <button type="button" class="btn btn-primary btn-quantity" (click)="incrementQuantity()">+</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-
-                        @if(isAdmin == false){
-                        <button type="button" class="btn btn-primary add-to-cart-btn"
-                            (click)="addToCart(product.gtin, cantidad_productos)">
-                            <i class="fa-solid fa-cart-plus"></i>
-                            Agregar al carrito
-                        </button>
-                        }
-                        @if(isAdmin){
-                        <button type="button" class="btn btn-primary edit-prod" data-bs-toggle="modal"
-                            data-bs-target="#modalForm">
-                            <i class="ph ph-note-pencil icon-text-ul"></i>
-                            Editar producto
-                        </button>
-                        }
                     </div>
                 </div>
             </div>

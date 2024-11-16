@@ -49,13 +49,13 @@ export class SwalMessages {
         });
     }
 
-    infoMessage(title: string| null){
-        if (!title) {
-            title = "No se pudo conectar con la base de datos.";
+    infoMessage(message: string| null){
+        if (!message) {
+            message = "No se pudo conectar con la base de datos.";
         }
 
         Swal.fire({
-            title: title,
+            title: message,
             icon: "info",
             showCloseButton: true,
             focusConfirm: false,
