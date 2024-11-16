@@ -21,7 +21,11 @@
     <div class="card-body">
 
         <!-- Region table  -->
-
+        @if(products.length == 0){
+          <div class="text-center table-empty">
+              <h4>No hay productos registrados.</h4>
+          </div>
+        }@else {
         <table class="table">
             <thead class="thead-dark">
               <tr class="table-primary">
@@ -75,7 +79,7 @@
                 }
             </tbody>
         </table>
-        
+      }
     </div>
     <div class="card-footer text-end">
       <small>{{ current_date | date: 'dd/MMM/yyyy, h:mm a' }}</small>
