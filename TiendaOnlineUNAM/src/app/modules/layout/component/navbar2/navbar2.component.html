@@ -59,7 +59,7 @@
 
       <!-- shopping cart  -->
 
-      @if (isAdmin == false){
+      @if (isAdmin == false && loggedIn == true){
       <span class="nav-link" (click)="redirect(['cart'])">
         <i class="ph ph-shopping-cart i-nav"></i>
       </span>

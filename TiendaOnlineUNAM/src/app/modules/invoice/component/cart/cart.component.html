@@ -1,51 +1,90 @@
 <div class="body-content">
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col col-letras">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header col-letras">
                     <h4>Mi Carrito</h4>
                 </div>
-            </div>
+                <div class="card-body">
+                    @if(cartProducts.length == 0){
+                    <div class="text-center table-empty">
+                        <h4>No cuentas con productos agregados.</h4>
+                    </div>
+                    } @else {
+                    <table class="table">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col" class="col-letras">Producto</th>
+                                <th scope="col" class="prod-tbl">Nombre</th>
+                                <th scope="col" class="col-letras">Precio</th>
+                                <th scope="col" class="col-letras">Cantidad</th>
+                                <th scope="col" class="col-letras">Total</th>
+                                <th scope="col" class="col-letras">Más</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(cartprod of cartProducts; track cartprod; ) {
+                            <tr>
+                                <td>
+                                    <img class="img-small"
+                                        src="{{ cartprod.image !== 'data:image/png;base64,' ? cartprod.image : 'assets/no-product-image.png'}}" />
+                                </td>
+                                <td>{{cartprod.product.product}}</td>
+                                <td>{{cartprod.product.price | currency: 'USD'}}</td>
+                                <td class="centered-cell">{{cartprod.quantity}}</td>
+                                <td></td>
+                                <td>
+                                    <span class="btn-del">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                        Eliminar
+                                    </span>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
 
-        </div>
-        <div class="card-body">
-
-
-            @if(cartProducts.length == 0){
-            <div class="text-center table-empty">
-                <h4>No cuentas con productos agregados.</h4>
-            </div>
-            }@else {
-            <table class="table">
-                <thead>
-                    <tr class="table-primary">
-                        <th scope="col" class="col-letras">Producto</th>
-                        <th scope="col" class="col-letras">Precio</th>
-                        <th scope="col" class="col-letras">Cantidad</th>
-                        <th scope="col" class="col-letras">Total</th>
-                        <th scope="col" class="col-letras">Más</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for(cartprod of cartProducts; track cartprod; ) {
-                    <tr>
-                        <td> <img class="img-small" src="{{ cartprod.image !== 'data:image/png;base64,' ? cartprod.image : 'assets/no-product-image.png'}}"/> {{cartprod.product.product}}</td>
-                        <td>{{cartprod.product.price | currency: 'USD'}}</td>
-                        <td class="centered-cell">{{cartprod.quantity}}</td>
-                        <td></td>
-
-                        <td>
-                            <span class="btn-del"><!-- (click)="showCategoriesby(categoria)"-->
-                                <i class="fa-regular fa-trash-can"></i>
-                                Eliminar
-                            </span>
-                        </td>
-                    </tr>
                     }
+                    <button type="button" class="btn btn-danger del-cart-btn">
+                        <i class="fa-regular fa-trash-can"></i>
+                        Vaciar carrito
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                </tbody>
-            </table>
-            }
+
+        <div class="col-md-4 tbl">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col" class="col-letras">Detalle</th>
+                                <th scope="col" class="col-letras">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Subtotal: </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Costo de envío:</td>
+                                <td>{{0 | currency: 'USD'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="ng">Total:</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary comprar-btn">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        Comprar
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
