@@ -48,3 +48,8 @@
     width: 100%;
     float: center;
 }
+
+.price{
+    color: rgb(168, 0, 146); 
+    font-weight: bold; /* negritas */
+  }

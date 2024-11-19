@@ -32,7 +32,7 @@
                                 <td>{{cartprod.product.product}}</td>
                                 <td>{{cartprod.product.price | currency: 'USD'}}</td>
                                 <td class="centered-cell">{{cartprod.quantity}}</td>
-                                <td>{{ getCostoProducto(cartprod.product.gtin) | currency: 'USD' }}</td>
+                                <td class="price">{{ getCostoProducto(cartprod.product.gtin) | currency: 'USD' }}</td>
                                 <td>
                                     <span class="btn-del" (click)="removeFromCart(cartprod.cart_id)">
                                         <i class="fa-regular fa-trash-can"></i>
@@ -75,7 +75,7 @@
                             </tr>
                             <tr>
                                 <td class="ng">Total:</td>
-                                <td>{{ costo_total | currency: 'USD' }}</td>
+                                <td class="price">{{ costo_total | currency: 'USD' }}</td>
                             </tr>
                         </tbody>
                     </table>
