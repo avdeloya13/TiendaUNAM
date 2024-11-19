@@ -32,7 +32,7 @@
                                 <td>{{cartprod.product.product}}</td>
                                 <td>{{cartprod.product.price | currency: 'USD'}}</td>
                                 <td class="centered-cell">{{cartprod.quantity}}</td>
-                                <td></td>
+                                <td>{{ getCostoProducto(cartprod.product.gtin) | currency: 'USD' }}</td>
                                 <td>
                                     <span class="btn-del">
                                         <i class="fa-regular fa-trash-can"></i>
@@ -44,16 +44,17 @@
                         </tbody>
                     </table>
 
-                    }
                     <button type="button" class="btn btn-danger del-cart-btn">
                         <i class="fa-regular fa-trash-can"></i>
                         Vaciar carrito
                     </button>
+                    }
                 </div>
             </div>
         </div>
 
 
+        @if(cartProducts.length != 0){
         <div class="col-md-4 tbl">
             <div class="card">
                 <div class="card-body">
@@ -67,7 +68,7 @@
                         <tbody>
                             <tr>
                                 <td>Subtotal: </td>
-                                <td></td>
+                                <td>{{ costo_total | currency: 'USD' }}</td>
                             </tr>
                             <tr>
                                 <td>Costo de envío:</td>
@@ -75,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td class="ng">Total:</td>
-                                <td></td>
+                                <td>{{ costo_total | currency: 'USD' }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -86,5 +87,6 @@
                 </div>
             </div>
         </div>
+        }
     </div>
 </div>

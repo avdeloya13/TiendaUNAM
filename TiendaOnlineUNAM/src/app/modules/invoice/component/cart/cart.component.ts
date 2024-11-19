@@ -16,6 +16,7 @@ export class CartComponent {
 
   swal: SwalMessages = new SwalMessages();
   cartProducts: any[] = [];
+  costo_total: number = 0;
 
   constructor(
     private cartService: CartService
@@ -25,10 +26,26 @@ export class CartComponent {
     this.getCartProducts();
   }
 
+  getCostoProducto(gtin: string): number{
+    for (let prod of this.cartProducts){
+      if (gtin === prod.product.gtin){
+        return prod.quantity * prod.product.price;
+      }
+    }
+    return 0; 
+  }
+
+  getCostoTotal() {
+    for (let prod of this.cartProducts) {
+      this.costo_total += prod.quantity * prod.product.price;
+    }
+  }
+
   getCartProducts() {
     this.cartService.getCart().subscribe({
       next: (v) => {
         this.cartProducts = v;
+        this.getCostoTotal();
         console.log(v);
       },
       error: (e) => {
@@ -36,4 +53,6 @@ export class CartComponent {
       } 
     });
   }
+
+
 }
