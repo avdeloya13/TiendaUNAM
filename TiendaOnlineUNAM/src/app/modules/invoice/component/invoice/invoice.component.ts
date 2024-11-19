@@ -16,7 +16,6 @@ import { CartService } from '../../_service/cart.service';
 export class InvoiceComponent {
 
   invoices: DtoInvoiceList[] = []; // Invoice list
-
   current_date = new Date(); // hora y fecha actual
   loading = false; // loading request 
   swal: SwalMessages = new SwalMessages(); // swal messages
@@ -49,4 +48,6 @@ export class InvoiceComponent {
   showInvoice(id: number){
     this.router.navigate(['invoice/' + id]);
   }
+
+  
 }

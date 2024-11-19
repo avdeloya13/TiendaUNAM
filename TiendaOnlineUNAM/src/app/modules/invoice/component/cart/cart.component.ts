@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from '../../_service/cart.service';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { SharedModule } from '../../../../shared/shared-module';
+import { InvoiceService } from '../../_service/invoice.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +18,8 @@ export class CartComponent {
   costo_total: number = 0;
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
+    private invoiceService: InvoiceService
   ) { }
 
   ngOnInit(){
@@ -84,6 +86,18 @@ export class CartComponent {
             this.swal.errorMessage("No se pudo eliminar el producto.");
           }
         });
+      }
+    });
+  }
+
+  generateInvoice(id: number){
+    this.invoiceService.generateInvoice(id).subscribe({
+      next: (v) => {
+        this.swal.successMessage("Compra realizada!");
+      },
+      error: (e) => {
+        console.error(e);
+        this.swal.errorMessage("No se pudo realizar la compra.");
       }
     });
   }
