@@ -34,7 +34,7 @@
                                 <td class="centered-cell">{{cartprod.quantity}}</td>
                                 <td>{{ getCostoProducto(cartprod.product.gtin) | currency: 'USD' }}</td>
                                 <td>
-                                    <span class="btn-del">
+                                    <span class="btn-del" (click)="removeFromCart(cartprod.cart_id)">
                                         <i class="fa-regular fa-trash-can"></i>
                                         Eliminar
                                     </span>
@@ -44,7 +44,7 @@
                         </tbody>
                     </table>
 
-                    <button type="button" class="btn btn-danger del-cart-btn">
+                    <button type="button" class="btn btn-danger del-cart-btn" (click)="deleteCart()">
                         <i class="fa-regular fa-trash-can"></i>
                         Vaciar carrito
                     </button>
@@ -54,7 +54,6 @@
         </div>
 
 
-        @if(cartProducts.length != 0){
         <div class="col-md-4 tbl">
             <div class="card">
                 <div class="card-body">
@@ -87,6 +86,5 @@
                 </div>
             </div>
         </div>
-        }
     </div>
 </div>

@@ -3,8 +3,6 @@ import { CartService } from '../../_service/cart.service';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { SharedModule } from '../../../../shared/shared-module';
 
-declare var $: any;
-
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -35,8 +33,8 @@ export class CartComponent {
     return 0; 
   }
 
-  getCostoTotal() {
-    for (let prod of this.cartProducts) {
+  getCostoTotal(){
+    for (let prod of this.cartProducts){
       this.costo_total += prod.quantity * prod.product.price;
     }
   }
@@ -51,6 +49,42 @@ export class CartComponent {
       error: (e) => {
         this.swal.errorMessage("No hay productos en el carrito.");
       } 
+    });
+  }
+
+  deleteCart(){
+    this.swal.confirmMessage.fire({
+      title: "Favor de confirmar la eliminación",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.cartService.deleteCart().subscribe({
+          next: (v) => {
+            this.swal.successMessage("El carrito ha sido vaciado.");
+            this.getCartProducts();
+          },
+          error: (e) => {
+            this.swal.errorMessage("No se pudo vaciar el carrito.");
+          }
+        });
+      }
+    }); 
+  }
+
+  removeFromCart(id: number){
+    this.swal.confirmMessage.fire({
+      title: "Favor de confirmar la eliminación",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.cartService.removeFromCart(id).subscribe({
+          next: (v) => {
+            this.swal.successMessage("El producto ha sido eliminado.");
+            this.getCartProducts();
+          },
+          error: (e) => {
+            this.swal.errorMessage("No se pudo eliminar el producto.");
+          }
+        });
+      }
     });
   }
 
