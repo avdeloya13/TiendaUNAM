@@ -36,6 +36,7 @@ export class CartComponent {
   }
 
   getCostoTotal(){
+    this.costo_total = 0;
     for (let prod of this.cartProducts){
       this.costo_total += prod.quantity * prod.product.price;
     }
