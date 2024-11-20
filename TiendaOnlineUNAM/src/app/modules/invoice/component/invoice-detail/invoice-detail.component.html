@@ -43,17 +43,18 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- @for(item of invoice.items; track item; ) {
+                @for(item of invoice.items; track item; ) {
                 <tr>
+                    <td>{{ item.item_id }}</td>
                     <td>{{ item.gtin }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.unit_price | currency}}</td>
+                    <td>{{ item.taxes | currency}}</td>
+                    <td>{{ item.total | currency}}</td>
                 </tr>
-            }-->
+            }
             </tbody>
         </table>
-
-        <!--<div class="total">
-        Total: {{invoice.total | currency}}
-    </div>-->
 
         <div class="last-table-container">
             <table class="table">

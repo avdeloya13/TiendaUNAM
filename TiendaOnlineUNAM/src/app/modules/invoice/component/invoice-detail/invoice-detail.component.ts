@@ -41,6 +41,7 @@ export class InvoiceDetailComponent {
         this.invoice = v;
         this.loading = false;
         console.log(this.invoice);
+        console.log(this.invoice.items);
       },
       error: (e) => {
         console.error(e);
