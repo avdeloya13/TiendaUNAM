@@ -62,22 +62,19 @@
                     </tr>
                 </thead>
                 <tr>
-                    <td><span class="bold-text">Método de Pago:</span> Pago en una sola exhibición</td>
-                    <td><span class="bold-text">Total de Artículos:</span> </td>
+                    <td><span class="bold-text">Exportación:</span> No aplica</td>
+                    <td><span class="bold-text">Moneda:</span> Peso mexicano</td>
                     <td><span class="bold-text">Sutotal:</span>{{invoice.subtotal | currency}} </td>
                 </tr>
                 <tr>
-                    <td><span class="bold-text">Exportación:</span> No aplica</td>
-                    <td><span class="bold-text">Moneda:</span> Peso mexicano</td>
+                    <td><span class="bold-text">Método de Pago:</span> Pago en una sola exhibición</td>
+                    <td><span class="bold-text">Uso CFDI:</span> Gastos en general</td>
                     <td><span class="bold-text">Impuestos:</span>{{invoice.taxes | currency}} </td>
                 </tr>
                 <tr>
                     <td><span class="bold-text">Objeto Impuesto:</span> Sí, objeto impuesto</td>
                     <td><span class="bold-text">Forma de Pago:</span> Tarjeta de crédito bancaria</td>
                     <td class="bold-text"><span class="bold-text">Total:</span>{{invoice.total | currency}} </td>
-                </tr>
-                <tr>
-                    <td><span class="bold-text">Uso CFDI:</span> Gastos en general</td>
                 </tr>
             </table>
 
