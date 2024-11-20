@@ -95,6 +95,7 @@ export class CartComponent {
     this.invoiceService.generateInvoice(id).subscribe({
       next: (v) => {
         this.swal.successMessage("Compra realizada!");
+        this.getCartProducts();
       },
       error: (e) => {
         console.error(e);

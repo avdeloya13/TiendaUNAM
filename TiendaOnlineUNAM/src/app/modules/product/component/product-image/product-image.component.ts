@@ -246,17 +246,16 @@ export class ProductImageComponent {
     });
   }
 
-  //updateProductStock(gtin: string, stock: number){
-  //  this.productService.updateProductStock(this.product.gtin, this.product.stock).subscribe({
-  //    next: (v) => {
-  //      this.swal.successMessage("Stock actualizado con éxito!");
-  //    },
-  //    error: (e) => {
-  //      console.error(e);
-  //      this.swal.errorMessage("No se pudo actualizar el stock.");
-  //    }
-  //  });
-  //}
+  updateProductStock(gtin: string, stock: number){
+    this.productService.updateProductStock(this.product.gtin, this.product.stock).subscribe({
+      next: (v) => {
+        console.log(v);
+      },
+      error: (e) => {
+        console.error(e);
+      }
+    });
+  }
   
   addToCart(gtin: string, quantity: number) {
     let cart:Cart = new Cart();
@@ -267,12 +266,13 @@ export class ProductImageComponent {
       next: (v) => {
         this.swal.successMessage("Producto agregado al carrito!");
         console.log(cart);
-        this.updateStocks(gtin, quantity);
+        //this.updateStocks(gtin, quantity);
+        this.updateProductStock(gtin, quantity);
       },
       error: (e) => {
         console.log(e);
         if(this.loggedIn == false){
-          this.swal.errorMessage("No se pudo agregar al carrito.");
+          this.swal.errorMessage("Inicia sesión para agregar productos al carrito.");
         }
         if(this.loggedIn == true){
           this.swal.errorMessage("No hay suficiente stock.");
