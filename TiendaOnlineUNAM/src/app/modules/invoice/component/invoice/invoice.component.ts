@@ -4,7 +4,6 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { InvoiceService } from '../../_service/invoice.service';
 import { SharedModule } from '../../../../shared/shared-module';
 import { Router } from '@angular/router';
-import { CartService } from '../../_service/cart.service';
 
 @Component({
   selector: 'app-invoice',
@@ -22,8 +21,7 @@ export class InvoiceComponent {
 
   constructor(
     private invoiceService: InvoiceService,
-    private router: Router,
-    private cartService: CartService
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -48,6 +46,5 @@ export class InvoiceComponent {
   showInvoice(id: number){
     this.router.navigate(['invoice/' + id]);
   }
-
   
 }

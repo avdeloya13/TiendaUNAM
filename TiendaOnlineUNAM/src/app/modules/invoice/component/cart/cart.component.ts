@@ -90,7 +90,7 @@ export class CartComponent {
     });
   }
 
-  generateInvoice(id: number){
+  generateInvoice(id: any){
     this.invoiceService.generateInvoice(id).subscribe({
       next: (v) => {
         this.swal.successMessage("Compra realizada!");
