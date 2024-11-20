@@ -244,6 +244,18 @@ export class ProductImageComponent {
       }
     });
   }
+
+  //updateProductStock(gtin: string, stock: number){
+  //  this.productService.updateProductStock(this.product.gtin, this.product.stock).subscribe({
+  //    next: (v) => {
+  //      this.swal.successMessage("Stock actualizado con éxito!");
+  //    },
+  //    error: (e) => {
+  //      console.error(e);
+  //      this.swal.errorMessage("No se pudo actualizar el stock.");
+  //    }
+  //  });
+  //}
   
   addToCart(gtin: string, quantity: number) {
     let cart:Cart = new Cart();
