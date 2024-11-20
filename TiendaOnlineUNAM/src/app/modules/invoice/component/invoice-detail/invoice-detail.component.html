@@ -5,13 +5,11 @@
         Regresar
     </span>
 </div>
-
-<div class="invoice-container">
-    <div class="header">
+<div class="card-body">
+    <div class="card">
         <table class="table">
             <thead class="thead-dark">
                 <tr class="table-primary">
-                </tr>
             </thead>
             <tr>
                 <td><span class="bold-text">RFC Emisor:</span> UNAM131289FAC</td>
@@ -31,66 +29,61 @@
                 <td><span class="bold-text">Efecto de Comprobante:</span> Ingreso</td>
             </tr>
         </table>
-    </div>
 
-    <table class="table">
-        <thead class="thead-dark">
-            <tr class="table-primary">
-                <th class="col-letras">No.</th>
-                <th class="col-letras">Gtin</th>
-                <th class="col-letras">Cantidad</th>
-                <th class="col-letras">Costo Unitario</th>
-                <th class="col-letras">Impuestos</th>
-                <th class="col-letras">Importe Total</th>
-            </tr>
-        </thead>
-        <tbody>
-           <!-- @for(item of invoice.items; track item; ) {
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="table-primary">
+                    <th class="col-letras">No.</th>
+                    <th class="col-letras">Gtin</th>
+                    <th class="col-letras">Cantidad</th>
+                    <th class="col-letras">Costo Unitario</th>
+                    <th class="col-letras">Impuestos</th>
+                    <th class="col-letras">Importe Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- @for(item of invoice.items; track item; ) {
                 <tr>
                     <td>{{ item.gtin }}</td>
                 </tr>
             }-->
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <!--<div class="total">
+        <!--<div class="total">
         Total: {{invoice.total | currency}}
     </div>-->
 
-    <div class="last-table-container">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr class="table-primary">
+        <div class="last-table-container">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr class="table-primary">
+                    </tr>
+                </thead>
+                <tr>
+                    <td><span class="bold-text">Método de Pago:</span> Pago en una sola exhibición</td>
+                    <td><span class="bold-text">Total de Artículos:</span> </td>
+                    <td><span class="bold-text">Sutotal:</span>{{invoice.subtotal | currency}} </td>
                 </tr>
-            </thead>
-            <tr>
-                <td><span class="bold-text">Total de Artículos:</span> </td>
-                <td><span class="bold-text">Sutotal:</span>{{invoice.subtotal | currency}} </td>
-            </tr>
-            <tr>
-                <td><span class="bold-text">Moneda:</span> Peso mexicano</td>
-                <td><span class="bold-text">Impuestos:</span>{{invoice.taxes | currency}} </td>
-            </tr>
-            <tr>
-                <td><span class="bold-text">Forma de Pago:</span> Tarjeta de crédito bancaria</td>
-                <td><span class="bold-text">Total:</span>{{invoice.total | currency}} </td>
-            </tr>
-            <tr>
-                <td><span class="bold-text">Método de Pago:</span> Pago en una sola exhibición</td>
-            </tr>
-            <tr>
-                <td><span class="bold-text">Exportación:</span> No aplica</td>
-            </tr>
-            <tr>
-                <td><span class="bold-text">Objeto Impuesto:</span> Sí, objeto impuesto</td>
-            </tr>
-            <tr>
-                <td><span class="bold-text">Uso CFDI:</span> Gastos en general</td>
-            </tr>
-        </table>
+                <tr>
+                    <td><span class="bold-text">Exportación:</span> No aplica</td>
+                    <td><span class="bold-text">Moneda:</span> Peso mexicano</td>
+                    <td><span class="bold-text">Impuestos:</span>{{invoice.taxes | currency}} </td>
+                </tr>
+                <tr>
+                    <td><span class="bold-text">Objeto Impuesto:</span> Sí, objeto impuesto</td>
+                    <td><span class="bold-text">Forma de Pago:</span> Tarjeta de crédito bancaria</td>
+                    <td class="bold-text"><span class="bold-text">Total:</span>{{invoice.total | currency}} </td>
+                </tr>
+                <tr>
+                    <td><span class="bold-text">Uso CFDI:</span> Gastos en general</td>
+                </tr>
+            </table>
 
-        <div class="image-container">
-            <img src="assets/QR_code.png" alt="Código QR" />
+            <div class="image-container">
+                <img src="assets/QR_code.png" alt="Código QR" />
+            </div>
         </div>
     </div>
 </div>
