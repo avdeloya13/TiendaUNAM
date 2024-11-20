@@ -13,7 +13,7 @@ import { InvoiceComponent } from './modules/invoice/component/invoice/invoice.co
 import { ByCategoryComponent } from './modules/product/component/by-category/by-category.component';
 import { CartComponent } from './modules/invoice/component/cart/cart.component';
 import { InvoiceDetailComponent } from './modules/invoice/component/invoice-detail/invoice-detail.component';
-import { RegionComponent } from './modules/product/component/region/region.component';
+import { RegionComponent } from './modules/customer/component/region/region.component';
 
 export const routes: Routes = [
     
