@@ -18,7 +18,7 @@ export class InvoiceDetailComponent {
   invoice: Invoice = new Invoice();
   loading = false; // loading request
   swal: SwalMessages = new SwalMessages(); // swal messages
-
+  
   constructor(
     private invoiceService: InvoiceService,
     private route: ActivatedRoute,

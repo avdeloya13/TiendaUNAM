@@ -45,7 +45,7 @@
             </tr>
         </thead>
         <tbody>
-            <!--@for(item of invoice.items; track item; ) {
+           <!-- @for(item of invoice.items; track item; ) {
                 <tr>
                     <td>{{ item.gtin }}</td>
                 </tr>
@@ -53,9 +53,9 @@
         </tbody>
     </table>
 
-    <div class="total">
+    <!--<div class="total">
         Total: {{invoice.total | currency}}
-    </div>
+    </div>-->
 
     <div class="last-table-container">
         <table class="table">
@@ -65,12 +65,15 @@
             </thead>
             <tr>
                 <td><span class="bold-text">Total de Artículos:</span> </td>
+                <td><span class="bold-text">Sutotal:</span>{{invoice.subtotal | currency}} </td>
             </tr>
             <tr>
                 <td><span class="bold-text">Moneda:</span> Peso mexicano</td>
+                <td><span class="bold-text">Impuestos:</span>{{invoice.taxes | currency}} </td>
             </tr>
             <tr>
                 <td><span class="bold-text">Forma de Pago:</span> Tarjeta de crédito bancaria</td>
+                <td><span class="bold-text">Total:</span>{{invoice.total | currency}} </td>
             </tr>
             <tr>
                 <td><span class="bold-text">Método de Pago:</span> Pago en una sola exhibición</td>
