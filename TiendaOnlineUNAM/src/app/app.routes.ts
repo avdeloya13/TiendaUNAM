@@ -14,6 +14,8 @@ import { ByCategoryComponent } from './modules/product/component/by-category/by-
 import { CartComponent } from './modules/invoice/component/cart/cart.component';
 import { InvoiceDetailComponent } from './modules/invoice/component/invoice-detail/invoice-detail.component';
 import { RegionComponent } from './modules/customer/component/region/region.component';
+import { CustomerImageComponent } from './modules/customer/component/customer-image/customer-image.component';
+import { CustomerComponent } from './modules/customer/component/customer/customer.component';
 
 export const routes: Routes = [
     
@@ -62,5 +64,13 @@ export const routes: Routes = [
     },
     {   path: 'cart',
         component: CartComponent
+    },
+    {
+        path: 'customer',
+        component: CustomerComponent
+    },
+    {
+        path: 'customer/:rfc',
+        component: CustomerImageComponent
     }
 ];

@@ -1,0 +1,33 @@
+.col-letras{
+    color:rgb(248, 98, 28);
+}
+
+.disable-item:hover{
+    background-color: rgb(248, 98, 28);
+    color: white !important;
+}
+
+.enable-item:hover{
+    background-color: rgb(248, 98, 28);
+    color: white !important;
+}
+
+.dropdown-item:hover{
+    background-color: rgb(248, 98, 28);
+    color: white !important;
+}
+
+.det{
+    color: rgb(248, 98, 28);
+    cursor: pointer;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.cur{
+    cursor: pointer;
+}
+
+.card{
+    margin-top: 2%;
+}

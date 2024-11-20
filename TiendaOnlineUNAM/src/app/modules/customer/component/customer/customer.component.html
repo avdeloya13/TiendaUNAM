@@ -5,7 +5,7 @@
       
       <div class="card-header">
         <div class="row">
-          <div class="col">
+          <div class="col col-letras">
             <h4>Clientes</h4>
           </div>
         </div>
@@ -14,28 +14,20 @@
       <!-- card body  -->
 
       <div class="card-body">     
-
-        <!-- loading  -->
-        
-        @if(loading) {
-          <div class="text-center" >
-            <img src="assets/loading.gif" class="img-loading" alt="">
-          </div>
-        }
         
         @if(!loading && customers.length == 0){
           <div class="text-center table-empty">
               <h4>No cuentas con clientes registrados</h4>
           </div>
         }@else {
-          <table class="table table-striped">
+          <table class="table">
             <thead>
               <tr class="table-primary">
-                <th scope="col">No.</th>
-                <th scope="col">RFC</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Estatus</th>
-                <th scope="col">Más</th>
+                <th scope="col" class="col-letras">No.</th>
+                <th scope="col" class="col-letras">RFC</th>
+                <th scope="col" class="col-letras">Nombre</th>
+                <th scope="col" class="col-letras">Estatus</th>
+                <th scope="col" class="col-letras">Más</th>
               </tr>
             </thead>
             <tbody>
@@ -46,7 +38,7 @@
                       <td>{{ customer.name + " " + customer.surname }}</td>
                       <td>
                           @if (customer.status == 1) {
-                              {{ "Activo" }}
+                            <span class="td-status-enable">{{ "Activo" }}</span>
                           }@else {
                             <span class="td-status-disable">{{ "Inactivo" }}</span>
                           }
@@ -54,22 +46,22 @@
                       <td>
                         <div class="dropdown">
                             <!-- dots button  -->
-                            <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="dropdown-button det" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                               <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
                             </button>
         
                             <!-- menu options -->
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" (click)="showCustomer(customer.rfc)">
+                              <a class="dropdown-item cur" (click)="showCustomer(customer.rfc)">
                                 <i class="ph ph-eye icon-text-ul"></i>Ver detalles
                               </a>
                               @if (customer.status == 0) {
-                                <a class="dropdown-item enable-item" (click)="enableCustomer(customer.customer_id)">
+                                <a class="dropdown-item enable-item cur" (click)="enableCustomer(customer.customer_id)">
                                   <i class="ph ph-check-circle icon-text-ul"></i>Activar
                                 </a>
                               }
                               @if (customer.status == 1) {
-                                <a class="dropdown-item disable-item" (click)="disableCustomer(customer.customer_id)">
+                                <a class="dropdown-item disable-item cur" (click)="disableCustomer(customer.customer_id)">
                                     <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
                                 </a>
                               }
