@@ -6,27 +6,25 @@
         <h5 class="fw-bolder col-letras">Productos</h5>
       </div>
   
-      <!--@if(product_category.length == 0){
+      @if(products.length == 0){
         <div class="text-center table-empty">
-            <h4>No hay productos en esta categoría</h4>
+            <h4>No hay productos para mostrar</h4>
         </div>
       }@else {
     
-      @for (dtoprod of product_category; track dtoprod;) {
+      @for (dtoprod of products; track dtoprod;) {
     
         <div class="col-md-3 mb-5 ret">
                          
           <div class="cardd h-100" (click)="showProduct(dtoprod.gtin)">
   
-            <img class="card-img-top img-button" src="{{ dtoprod.image !== 'data:image/png;base64,' ? dtoprod.image : 'assets/no-product-image.png'}}"/> 
+         <!--   <img class="card-img-top img-button" src="{{ dtoprod.productImgs !== 'data:image/png;base64,' ? dtoprod.productImgs : 'assets/no-product-image.png'}}"/>-->
             
             <div class="card-body p-4 ">
                                          
               <div class="text-center" >
-                 Nombre del producto
                 <h5 class="fw-bolder">{{ dtoprod.product }}</h5>
     
-                 Precio del producto
                 {{ dtoprod.price | currency: 'USD'}}
               </div>
             </div>
@@ -34,6 +32,6 @@
           </div>
         </div>
       } 
-    }-->
+    }
     </div>
     </div>
