@@ -16,6 +16,7 @@ import { InvoiceDetailComponent } from './modules/invoice/component/invoice-deta
 import { RegionComponent } from './modules/customer/component/region/region.component';
 import { CustomerImageComponent } from './modules/customer/component/customer-image/customer-image.component';
 import { CustomerComponent } from './modules/customer/component/customer/customer.component';
+import { ProductsComponent } from './modules/product/component/products/products.component';
 
 export const routes: Routes = [
     
@@ -72,5 +73,9 @@ export const routes: Routes = [
     {
         path: 'customer/:rfc',
         component: CustomerImageComponent
+    },
+    {
+        path: 'products',
+        component: ProductsComponent
     }
 ];
