@@ -9,8 +9,6 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductImageService } from '../../_service/product-image.service';
 import { NgxPhotoEditorService } from 'ngx-photo-editor';
 import { ProductImage } from '../../_model/product-image';
-import { CartService } from '../../../invoice/_service/cart.service';
-import { Cart } from '../../../invoice/_model/cart';
 
 declare var $: any;
 
@@ -42,8 +40,7 @@ export class ProductImageComponent {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private ngxService: NgxPhotoEditorService,
-    private cartService: CartService
+    private ngxService: NgxPhotoEditorService
   ) {
     this.form = this.formBuilder.group({
       gtin: ['', Validators.required],
@@ -207,55 +204,5 @@ export class ProductImageComponent {
   hideModalForm(){
     $("#modalForm").modal("hide");
     $('.modal-backdrop').remove();
-  }
-
-  showCategoriesby(id: number) {
-    this.router.navigate(['categoria', id]);
-  }
-
-  incrementQuantity() {
-    if (this.cantidad_productos < this.product.stock) { 
-      this.cantidad_productos++;
-    }
-  }
-
-  decrementQuantity() {
-    if (this.cantidad_productos > 1) { 
-      this.cantidad_productos--;
-    }
-  }
-
-  updateProductStock(gtin: string, stock: number){
-    this.productService.updateProductStock(this.product.gtin, this.product.stock).subscribe({
-      next: (v) => {
-        console.log(v);
-      },
-      error: (e) => {
-        console.error(e);
-      }
-    });
-  }
-  
-  addToCart(gtin: string, quantity: number) {
-    let cart:Cart = new Cart();
-    cart.gtin = gtin;
-    cart.quantity = quantity;
-
-    this.cartService.addToCart(cart).subscribe({
-      next: (v) => {
-        this.swal.successMessage("Producto agregado al carrito!");
-        console.log(cart);
-        this.updateProductStock(gtin, quantity);
-      },
-      error: (e) => {
-        console.log(e);
-        if(this.loggedIn == false){
-          this.swal.errorMessage("Inicia sesión para agregar productos al carrito.");
-        }
-        if(this.loggedIn == true){
-          this.swal.errorMessage("No hay suficiente stock.");
-        }  
-      }
-    });
   }
 }

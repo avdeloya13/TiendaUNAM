@@ -3,28 +3,11 @@
         <div class="row custom-margin">
             <div class="col-md ret col-ret">
 
-                @if(isAdmin == false){
-                <span class="btn-return" (click)="showCategoriesby(categoria)">
-                    <i class="ph ph-arrow-circle-left icon-text-button"></i>
-                    Regresar
-                </span>
-                }
-
-                @if(isAdmin){
                 <span class="btn-return" (click)="redirect(['product'])">
                     <i class="ph ph-arrow-circle-left icon-text-button"></i>
                     Regresar
                 </span>
-                }
-
-                @if(isAdmin == false && product.stock != 0){
-                <button type="button" class="btn btn-primary add-to-cart-btn"
-                    (click)="addToCart(product.gtin, cantidad_productos)">
-                    <i class="fa-solid fa-cart-plus"></i>
-                    Agregar al carrito
-                </button>
-                }
-
+                
                 @if(isAdmin){
                 <button type="button" class="btn btn-primary edit-prod" data-bs-toggle="modal"
                     data-bs-target="#modalForm">
@@ -272,25 +255,6 @@
                                             <th class="col-md-4">Descripción</th>
                                             <td>{{ product.description }}</td>
                                         </tr>
-
-                                        @if(isAdmin == false){
-                                        <tr>
-                                            <th class="col-md-4">
-                                                <label for="quantity">Cantidad</label>
-                                            </th>
-
-                                            <td>
-                                                <div class="d-flex align-items-center quantity-selector">
-                                                    <button type="button" class="btn btn-primary btn-quantity"
-                                                        (click)="decrementQuantity()">-</button>
-                                                    <input type="number" id="quantity" [(ngModel)]="cantidad_productos"
-                                                        min="1" max="product.stock" class="mx-2" />
-                                                    <button type="button" class="btn btn-primary btn-quantity"
-                                                        (click)="incrementQuantity()">+</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        }
 
                                     </tbody>
                                 </table>
