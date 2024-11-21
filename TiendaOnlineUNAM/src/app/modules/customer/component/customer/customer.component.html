@@ -52,7 +52,7 @@
         
                             <!-- menu options -->
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item cur" (click)="showCustomer(customer.rfc)">
+                              <a *ngIf= "customer.status == 1" class="dropdown-item cur" (click)="showCustomer(customer.rfc)">
                                 <i class="ph ph-eye icon-text-ul"></i>Ver detalles
                               </a>
                               @if (customer.status == 0) {

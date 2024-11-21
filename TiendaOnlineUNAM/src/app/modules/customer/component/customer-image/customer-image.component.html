@@ -1,9 +1,11 @@
+<div class="card">
+
 <div class="card-header">
-    <div class="btn-return" (click)="redirect('customer')">
+    <div class="btn-return ret" (click)="redirect('customer')">
         <i class="ph ph-arrow-circle-left"></i>
         Regresar
     </div>
-</div>
+
 
 
 <div class="card-body">
@@ -12,7 +14,7 @@
 
         <!-- customer image  -->
    
-        <div class="col-md-4">
+        <div class="col-md-4 tbl-img">
             <div class="card">
 
 
@@ -46,7 +48,7 @@
    
         <!-- customer data  -->
    
-        <div class="col-md-8">
+        <div class="col-md-8 tbl">
             <div class="card">
                 <div class="card-body-customer">
 
@@ -54,7 +56,7 @@
                     <!-- name  -->
 
 
-                    <div class="customer-title">
+                    <div class="customer-title col-letras">
                         {{ customer.name + " " + customer.surname }}
                     </div>
 
@@ -88,23 +90,33 @@
                         </tbody>
                     </table>
 
-
                     <!-- buttons  -->
 
+            <button type="button" class="btn btn-primary btn-edith edit">
+                <i class="ph ph-note-pencil"></i>
+                Editar
+            </button>
+            
+            
+            <button type="button" class="btn btn-danger btn-delete delet">
+                <i class="ph ph-trash"></i>
+                Eliminar
+            </button>
 
-                    <button type="button" class="btn btn-primary btn-edith">
-                        <i class="ph ph-note-pencil"></i>
-                        Editar
-                    </button>
-
-
-                    <button type="button" class="btn btn-danger btn-delete">
-                        <i class="ph ph-trash"></i>
-                        Eliminar
-                    </button>
+                    
+                    
                 </div>
+            
             </div>
+            
         </div>
    
     </div>
 </div>
+
+</div>
+</div>
+
+
+
+   

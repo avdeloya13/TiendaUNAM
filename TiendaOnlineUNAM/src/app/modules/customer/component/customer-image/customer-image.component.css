@@ -1,7 +1,40 @@
 .card-body-customer{
-    padding: 16px;
+    padding: 20px;
 }
 
+.card{
+    margin-top: 2%;
+}
+
+.ret{
+    cursor: pointer;
+    color: rgb(248, 98, 28);
+    margin-top: 1%;
+}
+
+.col-letras{
+    color:rgb(248, 98, 28);
+}
+
+.tbl {
+    margin-top: 25px; 
+}
+
+.tbl-img{
+    margin-top: 45px; 
+}
+
+.edit{
+    display: block;
+    margin: 1rem 1.3rem;
+    float: left;
+}
+
+.delet{
+    display: block;
+    margin: 1rem auto 0;
+    float: right;
+}
 
 .customer-image{
     border-radius: 100%;
@@ -11,7 +44,6 @@
 
 
 .edit-customer-image{
-    color: blue;
     margin-bottom: 16px;
     cursor: pointer;
 }
