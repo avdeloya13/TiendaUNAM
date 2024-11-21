@@ -5,6 +5,7 @@ import { ProductService } from '../../_service/product.service';
 import { Router } from '@angular/router';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductImageService } from '../../_service/product-image.service';
+import { Product } from '../../_model/product';
 
 @Component({
   selector: 'app-products',
@@ -15,7 +16,8 @@ import { ProductImageService } from '../../_service/product-image.service';
 })
 export class ProductsComponent {
 
-  products: DtoProductList[] = [];
+  products: Product[] = [];
+  product: Product = new Product();
   swal: SwalMessages = new SwalMessages();
   productImgs: any[] = [];
   
@@ -35,6 +37,10 @@ export class ProductsComponent {
         this.products = v;
         console.log(v);
       },
+      //complete:()=>{ 
+      //  for(let prod of this.products){
+      //    this.getProductImages(prod.product_id);
+      //}},
       error: (e) => {
         console.log(e);
         this.swal.errorMessage("No se pudo obtener los productos.");
@@ -45,13 +51,27 @@ export class ProductsComponent {
   //getProductImages(id: number) {
   //  this.productimageService.getProductImage(id).subscribe({
   //    next: (v) => {
+  //      console.log(v);
   //      this.productImgs = v;
   //    },
   //    error: (e) => {
   //      this.swal.errorMessage("No hay imágenes");
+  //      console.log(e);
   //    } 
   //  });
   //}
+
+  getProductImages(product_id: number): any {
+    this.productimageService.getProductImage(product_id).subscribe({
+      next: (v) => {
+        //console.log(v);
+        return v[0];
+      },
+      error: (e) => {
+        this.swal.errorMessage("No hay imágenes");
+      } 
+    });
+  }
 
   showProduct(gtin: string){
     this.router.navigate(['product/' + gtin]);

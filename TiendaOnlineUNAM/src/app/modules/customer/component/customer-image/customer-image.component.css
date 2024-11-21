@@ -42,18 +42,19 @@
     height: 240px;
 }
 
-
 .edit-customer-image{
     margin-bottom: 16px;
     cursor: pointer;
 }
 
+.cur{
+    cursor: pointer;
+}
 
 .customer-title{
     font-size: 32px;
     margin-bottom: 16px;
 }
-
 
 .btn-edith, .btn-delete{
     width: 140px;
