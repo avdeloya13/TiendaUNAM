@@ -32,7 +32,7 @@ export class InvoiceComponent {
     this.loading = true;
     this.invoiceService.getInvoices().subscribe({
       next: (v) => {
-        this.invoices = v;
+        this.invoices = v.sort((a: any, b: any) => b.invoice_id - a.invoice_id);
         this.loading = false;
         this.current_date = new Date();
       },

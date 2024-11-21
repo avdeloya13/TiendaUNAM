@@ -17,6 +17,7 @@ import { RegionComponent } from './modules/customer/component/region/region.comp
 import { CustomerImageComponent } from './modules/customer/component/customer-image/customer-image.component';
 import { CustomerComponent } from './modules/customer/component/customer/customer.component';
 import { ProductsComponent } from './modules/product/component/products/products.component';
+import { ByCatProductImageComponent } from './modules/product/component/by-cat-product-image/by-cat-product-image.component';
 
 export const routes: Routes = [
     
@@ -77,5 +78,9 @@ export const routes: Routes = [
     {
         path: 'products',
         component: ProductsComponent
-    }
+    },
+    {
+        path: 'categoria/:id/product/:gtin',
+        component: ByCatProductImageComponent
+    },
 ];
