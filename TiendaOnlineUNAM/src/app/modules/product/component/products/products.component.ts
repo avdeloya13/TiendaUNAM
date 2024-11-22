@@ -30,20 +30,8 @@ export class ProductsComponent {
   }
 
   //Cuando se obtienen los productos por categorias, estos vienen con la direccion de la imagen, cosa que no pasa
-  //si solo los obtienes con alguna función del servicio de productos.
+  //si solo los obtienes con alguna función del product.service.ts
   //Por lo que mi idea fue obtener las categorias activas y de ahí obtener los productos de cada categoría.
-
-  getProductsByCategory(category_id: number) {
-    this.productService.getProductsByCategory(category_id).subscribe({
-      next: (v) => {
-        //Almacena los productos en products_categories y los ordena por su product_id
-        this.products_categories = [...this.products_categories, ...v].sort((a, b) => a.product_id - b.product_id);
-      },
-      error: (e) => {
-        this.swal.errorMessage("No se pudo obtener los productos.");
-      },
-    });
-  }
 
   getProductsFromActiveCategories() {
     this.categoryService.getActiveCategories().subscribe({
@@ -61,6 +49,18 @@ export class ProductsComponent {
       },
       error: (e) => {
         this.swal.errorMessage("No se pudo obtener las categorías activas.");
+      },
+    });
+  }
+
+  getProductsByCategory(category_id: number) {
+    this.productService.getProductsByCategory(category_id).subscribe({
+      next: (v) => {
+        //Almacena los productos en products_categories y los ordena por su product_id
+        this.products_categories = [...this.products_categories, ...v].sort((a, b) => a.product_id - b.product_id);
+      },
+      error: (e) => {
+        this.swal.errorMessage("No se pudo obtener los productos.");
       },
     });
   }
