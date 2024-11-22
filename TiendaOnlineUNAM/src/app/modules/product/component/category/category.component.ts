@@ -76,6 +76,7 @@ export class CategoryComponent {
       next: (v) => {
         this.categories = v.sort((a: any, b: any) => a.category_id - b.category_id);
         this.current_date = new Date();
+        console.log(v);
       },
       error: (e) => {
         this.swal.errorMessage("No hay un listado de categorias");

@@ -15,7 +15,7 @@ import { Cart } from '../../../invoice/_model/cart';
 declare var $: any;
 
 @Component({
-  selector: 'app-product-image',
+  selector: 'app-by-cat-product-image',
   standalone: true,
   imports: [SharedModule],
   templateUrl: './by-cat-product-image.component.html',

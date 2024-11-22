@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared-module';
-import { DtoProductList } from '../../_dto/dto-product-list';
 import { ProductService } from '../../_service/product.service';
 import { Router } from '@angular/router';
 import { SwalMessages } from '../../../../shared/swal-messages';
-import { ProductImageService } from '../../_service/product-image.service';
-import { Product } from '../../_model/product';
+import { CategoryService } from '../../_service/category.service';
 
 @Component({
   selector: 'app-products',
@@ -16,60 +14,54 @@ import { Product } from '../../_model/product';
 })
 export class ProductsComponent {
 
-  products: Product[] = [];
-  product: Product = new Product();
   swal: SwalMessages = new SwalMessages();
   productImgs: any[] = [];
+  categories: any = [];
+  products_categories: any =[];
   
   constructor(
     private productService: ProductService,
-    private productimageService: ProductImageService,
+    private categoryService:CategoryService,
     private router: Router
   ){ }
 
   ngOnInit(){
-    this.getActiveProducts();
+    this.getProductsFromActiveCategories();
   }
 
-  getActiveProducts(){
-    this.productService.getActiveProducts().subscribe({
+  //Cuando se obtienen los productos por categorias, estos vienen con la direccion de la imagen, cosa que no pasa
+  //si solo los obtienes con alguna función del servicio de productos.
+  //Por lo que mi idea fue obtener las categorias activas y de ahí obtener los productos de cada categoría.
+
+  getProductsByCategory(category_id: number) {
+    this.productService.getProductsByCategory(category_id).subscribe({
       next: (v) => {
-        this.products = v;
-        console.log(v);
+        //Almacena los productos en products_categories y los ordena por su product_id
+        this.products_categories = [...this.products_categories, ...v].sort((a, b) => a.product_id - b.product_id);
       },
-      //complete:()=>{ 
-      //  for(let prod of this.products){
-      //    this.getProductImages(prod.product_id);
-      //}},
       error: (e) => {
-        console.log(e);
         this.swal.errorMessage("No se pudo obtener los productos.");
-      }
+      },
     });
   }
 
-  //getProductImages(id: number) {
-  //  this.productimageService.getProductImage(id).subscribe({
-  //    next: (v) => {
-  //      console.log(v);
-  //      this.productImgs = v;
-  //    },
-  //    error: (e) => {
-  //      this.swal.errorMessage("No hay imágenes");
-  //      console.log(e);
-  //    } 
-  //  });
-  //}
-
-  getProductImages(product_id: number): any {
-    this.productimageService.getProductImage(product_id).subscribe({
+  getProductsFromActiveCategories() {
+    this.categoryService.getActiveCategories().subscribe({
       next: (v) => {
-        //console.log(v);
-        return v[0];
+        this.categories = v;
+        
+        if (this.categories && this.categories.length) {
+          this.categories.forEach((category: any) => {
+            this.getProductsByCategory(category.category_id);
+          });
+        } else {
+          this.swal.errorMessage("No hay categorías activas disponibles.");
+        }
+
       },
       error: (e) => {
-        this.swal.errorMessage("No hay imágenes");
-      } 
+        this.swal.errorMessage("No se pudo obtener las categorías activas.");
+      },
     });
   }
 
