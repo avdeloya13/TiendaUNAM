@@ -73,8 +73,8 @@ export class ProductsComponent {
     });
   }
 
-  showProduct(gtin: string){
-    this.router.navigate(['product/' + gtin]);
-  }
+  showProducts(gtin: string) {
+    this.router.navigate(['products', 'product', gtin]);
+    }
 
 }
