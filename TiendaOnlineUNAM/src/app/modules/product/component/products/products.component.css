@@ -22,3 +22,7 @@
 .cardd:hover {
     transform: scale(1.02); 
 }
+
+.cur{
+    cursor: pointer;
+}
