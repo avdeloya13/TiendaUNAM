@@ -19,6 +19,8 @@ import { CustomerComponent } from './modules/customer/component/customer/custome
 import { ProductsComponent } from './modules/product/component/products/products.component';
 import { ByCatProductImageComponent } from './modules/product/component/by-cat-product-image/by-cat-product-image.component';
 import { ProductsImageComponent } from './modules/product/component/products-image/products-image.component';
+import { adminGuard } from './core/admin.guard';
+import { customerGuard } from './core/customer.guard';
 
 export const routes: Routes = [
     
@@ -28,7 +30,8 @@ export const routes: Routes = [
     },
     {
         path: 'categoria',
-        component: CategoryComponent
+        component: CategoryComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'login',
@@ -40,11 +43,13 @@ export const routes: Routes = [
     },
     {
         path: 'product',
-        component: ProductComponent
+        component: ProductComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'product/:gtin',
-        component: ProductImageComponent
+        component: ProductImageComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'categoria/:id',
@@ -57,16 +62,18 @@ export const routes: Routes = [
     //},
     {
         path: 'region',
-        component: RegionComponent
+        component: RegionComponent,
+        canActivate: [adminGuard]
     },
     {   path: 'invoice',
-        component: InvoiceComponent 
+        component: InvoiceComponent
     },
     {   path: 'invoice/:id',
         component: InvoiceDetailComponent 
     },
     {   path: 'cart',
-        component: CartComponent
+        component: CartComponent,
+        canActivate: [customerGuard]
     },
     {
         path: 'customer',
