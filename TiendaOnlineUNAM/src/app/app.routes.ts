@@ -77,11 +77,13 @@ export const routes: Routes = [
     },
     {
         path: 'customer',
-        component: CustomerComponent
+        component: CustomerComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'customer/:rfc',
-        component: CustomerImageComponent
+        component: CustomerImageComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'products',
