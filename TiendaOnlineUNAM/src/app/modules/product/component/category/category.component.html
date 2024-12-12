@@ -1,30 +1,35 @@
-<!-- BODY CONTENT  -->
-
 <div class="body-content">
-
-  <div class="card col-letras">
+  <div class="card">
     <div class="card-header">
-      <h3>Categorías</h3>
-    </div>
-
-    <!-- CARD  -->
-    <div class="card-body">
-      <!-- BOTON NUEVA CATEGORIA  -->
-      <div class="botonDer">
-        <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
-          <i class="fa-solid fa-circle-plus"></i> Nueva Categoria
-        </button>
+      <div class="row d-flex align-items-center">
+        <div class="col col-letras">
+          <h4>Categorías</h4>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+            <i class="fa-solid fa-circle-plus"></i> Nueva Categoria
+          </button>
+        </div>
       </div>
-
-      <!-- TABLA  -->
-      <table class="table table-striped">
-        <thead>
+    
+    </div>
+    <div class="card-body">  
+      
+      
+      @if(categories.length == 0){
+        <div class="text-center table-empty">
+            <h4>No hay categorías registradas.</h4>
+        </div>
+      }@else {
+        <!-- TABLA  -->
+      <table class="table">
+        <thead class="thead-dark">
           <tr class="table-primary">
-            <th scope="col">Category_Id</th>
-            <th scope="col">Category</th>
-            <th scope="col">Tag</th>
-            <th scope="col">Estatus</th>
-            <th scope="col">Más</th>
+            <th scope="col" class="col-letras">Category_Id</th>
+            <th scope="col" class="col-letras">Category</th>
+            <th scope="col" class="col-letras">Tag</th>
+            <th scope="col" class="col-letras">Estatus</th>
+            <th scope="col" class="col-letras">Más</th>
           </tr>
         </thead>
         <tbody>
@@ -33,42 +38,37 @@
                 <td>{{ category.category_id }}</td>
                 <td>{{category.category}} </td>
                 <td>{{category.tag}} </td>
-                  <td>
-                    <div class="td-status" [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
-                      {{ category.status == 0 ? "Inactivo" : "Activo" }}
-                      </div>
-                  </td>
-
-                  <td>
-                    <div class="dropdown">
-                      <!-- dots button  -->
-                      <button class="dropdown-button det" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
-                      </button>
-  
-                      <!-- menu options -->
-                      <div class="dropdown-menu cur" aria-labelledby="dropdownMenuButton">
-
-                        <a *ngIf= "category.status == 1" class="dropdown-item disable-item" (click)="updateCategory(category)">
-                          <i class="ph ph-note-pencil icon-text-ul"></i> Editar
+                <td>
+                  <div class="td-status" [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
+                    {{ category.status == 0 ? "Inactivo" : "Activo" }}
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="dropdown-button det" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                    </button>
+                    <div class="dropdown-menu cur" aria-labelledby="dropdownMenuButton">
+                      <a *ngIf= "category.status == 1" class="dropdown-item disable-item" (click)="updateCategory(category)">
+                        <i class="ph ph-note-pencil icon-text-ul"></i> Editar
+                      </a>
+                      @if(category.status != 0){
+                        <a class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                          <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
                         </a>
-
-                        @if(category.status != 0){
-                          <a class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
-                            <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
-                          </a>
-                        }@else {
-                          <a class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
-                            <i class="ph ph-check-circle icon-text-ul"></i>Activar
-                          </a>
-                        }
-                      </div>
+                      }@else {
+                        <a class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                          <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                        </a>
+                      }
                     </div>
-                  </td>
+                  </div>
+                </td>
               </tr>
           }
-      </tbody>
+        </tbody>
       </table>
+      }
     </div>
 
     <!-- MODAL  -->
@@ -124,9 +124,11 @@
       </div>
     </div>
 
+
+
     <div class="card-footer text-end">
       <small>{{ current_date | date: 'dd/MMM/yyyy, h:mm a' }}</small>
     </div>
-
   </div>
 </div>
+

@@ -3,11 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from '../../_model/invoice';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { InvoiceService } from '../../_service/invoice.service';
+import { SharedModule } from '../../../../shared/shared-module';
 
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
-  imports: [],
+  imports: [SharedModule],
   templateUrl: './invoice-detail.component.html',
   styleUrl: './invoice-detail.component.css'
 })
@@ -15,10 +16,9 @@ export class InvoiceDetailComponent {
 
   id: number = 0; // invoice id
   invoice: Invoice = new Invoice();
-
   loading = false; // loading request
   swal: SwalMessages = new SwalMessages(); // swal messages
-
+  
   constructor(
     private invoiceService: InvoiceService,
     private route: ActivatedRoute,
@@ -41,6 +41,7 @@ export class InvoiceDetailComponent {
         this.invoice = v;
         this.loading = false;
         console.log(this.invoice);
+        console.log(this.invoice.items);
       },
       error: (e) => {
         console.error(e);
@@ -48,4 +49,9 @@ export class InvoiceDetailComponent {
       }
     });
   }
+
+  redirect(url: string[]) {
+    this.router.navigate(url);
+  }
+
 }

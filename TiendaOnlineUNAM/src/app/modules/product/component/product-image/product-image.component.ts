@@ -9,8 +9,6 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { ProductImageService } from '../../_service/product-image.service';
 import { NgxPhotoEditorService } from 'ngx-photo-editor';
 import { ProductImage } from '../../_model/product-image';
-import { CartService } from '../../../invoice/_service/cart.service';
-import { Cart } from '../../../invoice/_model/cart';
 
 declare var $: any;
 
@@ -31,6 +29,7 @@ export class ProductImageComponent {
   form: FormGroup;
   submitted = false;
   isAdmin = false;
+  loggedIn = false;
   categoria: number = 0;
   cantidad_productos: number = 1; 
 
@@ -41,8 +40,7 @@ export class ProductImageComponent {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private ngxService: NgxPhotoEditorService,
-    private cartService: CartService
+    private ngxService: NgxPhotoEditorService
   ) {
     this.form = this.formBuilder.group({
       gtin: ['', Validators.required],
@@ -55,6 +53,10 @@ export class ProductImageComponent {
   }
 
   ngOnInit() {
+    if(localStorage.getItem("token")){
+      this.loggedIn = true;
+    }
+
     this.gtin = this.route.snapshot.paramMap.get('gtin');
     if (this.gtin) {
       this.getProduct();
@@ -89,7 +91,11 @@ export class ProductImageComponent {
         this.product = v;
         this.populateForm();
         this.getProductImages();
+        console.log(v);
         this.categoria = v.category_id;
+        if(this.product.stock < 1){
+          this.swal.infoMessage("Producto agotado.");
+        }
       },
       error: (e) => {
         this.swal.errorMessage(e.error.message!);
@@ -198,60 +204,5 @@ export class ProductImageComponent {
   hideModalForm(){
     $("#modalForm").modal("hide");
     $('.modal-backdrop').remove();
-  }
-
-  showCategoriesby(id: number) {
-    this.router.navigate(['categoria', id]);
-  }
-
-  incrementQuantity() {
-    if (this.cantidad_productos < this.product.stock) { 
-      this.cantidad_productos++;
-    }
-  }
-
-  decrementQuantity() {
-    if (this.cantidad_productos > 1) { 
-      this.cantidad_productos--;
-    }
-  }
-
-  updateStocks(gtin: string, stock: number) {
-    this.cartService.getCart().subscribe({
-      next: (cartItems) => {
-        if (cartItems.length > 0) {
-          for(let prod of cartItems){
-            if(prod.gtin == this.product.gtin){
-              this.product.stock -= prod.quantity;
-             // this.swal.successMessage("Stock actualizado con éxito!");
-            }
-          }
-        } else {
-          this.swal.errorMessage("Carrito vacío.");
-        }
-      },
-      error: (e) => {
-        console.error(e);
-        this.swal.errorMessage("No se pudo actualizar el stock.");
-      }
-    });
-  }
-  
-  addToCart(gtin: string, quantity: number) {
-    let cart:Cart = new Cart();
-    cart.gtin = gtin;
-    cart.quantity = quantity;
-
-    this.cartService.addToCart(cart).subscribe({
-      next: (v) => {
-        this.swal.successMessage("Producto agregado al carrito!");
-        console.log(cart);
-        this.updateStocks(gtin, quantity);
-      },
-      error: (e) => {
-        console.log(e);
-        this.swal.errorMessage("No hay suficiente stock.");
-      }
-    });
   }
 }

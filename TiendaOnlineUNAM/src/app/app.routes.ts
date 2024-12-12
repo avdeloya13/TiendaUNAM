@@ -11,6 +11,16 @@ import { ProductComponent } from './modules/product/component/product/product.co
 import { HomeComponent } from './modules/layout/component/home/home.component';
 import { InvoiceComponent } from './modules/invoice/component/invoice/invoice.component';
 import { ByCategoryComponent } from './modules/product/component/by-category/by-category.component';
+import { CartComponent } from './modules/invoice/component/cart/cart.component';
+import { InvoiceDetailComponent } from './modules/invoice/component/invoice-detail/invoice-detail.component';
+import { RegionComponent } from './modules/customer/component/region/region.component';
+import { CustomerImageComponent } from './modules/customer/component/customer-image/customer-image.component';
+import { CustomerComponent } from './modules/customer/component/customer/customer.component';
+import { ProductsComponent } from './modules/product/component/products/products.component';
+import { ByCatProductImageComponent } from './modules/product/component/by-cat-product-image/by-cat-product-image.component';
+import { ProductsImageComponent } from './modules/product/component/products-image/products-image.component';
+import { adminGuard } from './core/admin.guard';
+import { customerGuard } from './core/customer.guard';
 
 export const routes: Routes = [
     
@@ -20,7 +30,8 @@ export const routes: Routes = [
     },
     {
         path: 'categoria',
-        component: CategoryComponent
+        component: CategoryComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'login',
@@ -32,11 +43,13 @@ export const routes: Routes = [
     },
     {
         path: 'product',
-        component: ProductComponent
+        component: ProductComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'product/:gtin',
-        component: ProductImageComponent
+        component: ProductImageComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'categoria/:id',
@@ -47,7 +60,41 @@ export const routes: Routes = [
       //  component: SecuredComponent, 
         //canActivate: [authenticationGuard]
     //},
+    {
+        path: 'region',
+        component: RegionComponent,
+        canActivate: [adminGuard]
+    },
     {   path: 'invoice',
-        component: InvoiceComponent 
-    }
+        component: InvoiceComponent
+    },
+    {   path: 'invoice/:id',
+        component: InvoiceDetailComponent 
+    },
+    {   path: 'cart',
+        component: CartComponent,
+        canActivate: [customerGuard]
+    },
+    {
+        path: 'customer',
+        component: CustomerComponent,
+        canActivate: [adminGuard]
+    },
+    {
+        path: 'customer/:rfc',
+        component: CustomerImageComponent,
+        canActivate: [adminGuard]
+    },
+    {
+        path: 'products',
+        component: ProductsComponent
+    },
+    {
+        path: 'categoria/:id/product/:gtin',
+        component: ByCatProductImageComponent
+    },
+    {
+        path: 'products/product/:gtin',
+        component: ProductsImageComponent
+    },
 ];

@@ -3,7 +3,7 @@
     <!-- Card header -->
 
     <div class="card-header">
-      <div class="row">
+      <div class="row d-flex align-items-center">
           <div class="col col-letras">
             <h4>Listado de productos</h4>
           </div>
@@ -21,16 +21,20 @@
     <div class="card-body">
 
         <!-- Region table  -->
-
+        @if(products.length == 0){
+          <div class="text-center table-empty">
+              <h4>No hay productos registrados.</h4>
+          </div>
+        }@else {
         <table class="table">
             <thead class="thead-dark">
               <tr class="table-primary">
-                  <th>Id</th>
-                  <th>Gtin</th>
-                  <th>Producto</th>
-                  <th>Precio</th>
-                  <th>Estatus</th>
-                  <th>Más</th>
+                  <th class="col-letras">Id</th>
+                  <th class="col-letras">Gtin</th>
+                  <th class="col-letras">Producto</th>
+                  <th class="col-letras">Precio</th>
+                  <th class="col-letras">Estatus</th>
+                  <th class="col-letras">Más</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +79,10 @@
                 }
             </tbody>
         </table>
+      }
+    </div>
+    <div class="card-footer text-end">
+      <small>{{ current_date | date: 'dd/MMM/yyyy, h:mm a' }}</small>
     </div>
 </div>
 
@@ -186,7 +194,6 @@
                   </div>
       
               </form>
-
         </div>
       </div>
     </div>

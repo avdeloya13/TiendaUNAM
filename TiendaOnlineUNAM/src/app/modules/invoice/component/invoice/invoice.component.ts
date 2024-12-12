@@ -4,7 +4,6 @@ import { SwalMessages } from '../../../../shared/swal-messages';
 import { InvoiceService } from '../../_service/invoice.service';
 import { SharedModule } from '../../../../shared/shared-module';
 import { Router } from '@angular/router';
-import { CartService } from '../../_service/cart.service';
 
 @Component({
   selector: 'app-invoice',
@@ -16,15 +15,13 @@ import { CartService } from '../../_service/cart.service';
 export class InvoiceComponent {
 
   invoices: DtoInvoiceList[] = []; // Invoice list
-
   current_date = new Date(); // hora y fecha actual
   loading = false; // loading request 
   swal: SwalMessages = new SwalMessages(); // swal messages
 
   constructor(
     private invoiceService: InvoiceService,
-    private router: Router,
-    private cartService: CartService
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -35,7 +32,7 @@ export class InvoiceComponent {
     this.loading = true;
     this.invoiceService.getInvoices().subscribe({
       next: (v) => {
-        this.invoices = v;
+        this.invoices = v.sort((a: any, b: any) => b.invoice_id - a.invoice_id);
         this.loading = false;
         this.current_date = new Date();
       },
@@ -49,4 +46,5 @@ export class InvoiceComponent {
   showInvoice(id: number){
     this.router.navigate(['invoice/' + id]);
   }
+  
 }

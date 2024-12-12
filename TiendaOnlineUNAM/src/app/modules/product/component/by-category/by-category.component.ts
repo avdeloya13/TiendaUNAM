@@ -46,8 +46,8 @@ export class ByCategoryComponent {
     });
   }
 
-  showProduct(gtin: string) {
-    this.router.navigate(['product', gtin]);
+ showProductCat(gtin: string) {
+  this.router.navigate(['categoria', this.id, 'product', gtin]);
   }
 
   getCategory(){

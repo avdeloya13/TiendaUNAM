@@ -1,1 +1,87 @@
-<p>Revisa en la consola el detalle de la factura :)</p>
+<div class="col-md ret col-ret">
+
+    <span class="btn-return" (click)="redirect(['invoice'])">
+        <i class="ph ph-arrow-circle-left icon-text-button"></i>
+        Regresar
+    </span>
+</div>
+<div class="card-body">
+    <div class="card">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="table-primary">
+            </thead>
+            <tr>
+                <td><span class="bold-text">RFC Emisor:</span> UNAM131289FAC</td>
+                <td><span class="bold-text">Folio Fiscal:</span> {{ invoice.invoice_id }}</td>
+            </tr>
+            <tr>
+                <td><span class="bold-text">Nombre Emisor:</span> Tienda UNAM</td>
+                <td><span class="bold-text">Fecha Emisión:</span> {{ invoice.created_at | date: 'dd/MM/yyyy' }}
+                </td>
+            </tr>
+            <tr>
+                <td><span class="bold-text">RFC Receptor:</span> {{ invoice.rfc }}</td>
+                <td><span class="bold-text">Hora Emisión:</span> {{ invoice.created_at | date: 'hh:mm a' }}</td>
+            </tr>
+            <tr>
+                <td><span class="bold-text">Régimen Fiscal:</span> General ley personas morales</td>
+                <td><span class="bold-text">Efecto de Comprobante:</span> Ingreso</td>
+            </tr>
+        </table>
+
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="table-primary">
+                    <th class="col-letras">No.</th>
+                    <th class="col-letras">Gtin</th>
+                    <th class="col-letras">Cantidad</th>
+                    <th class="col-letras">Costo Unitario</th>
+                    <th class="col-letras">Impuestos</th>
+                    <th class="col-letras">Importe Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(item of invoice.items; track item; ) {
+                <tr>
+                    <td>{{ item.item_id }}</td>
+                    <td>{{ item.gtin }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.unit_price | currency}}</td>
+                    <td>{{ item.taxes | currency}}</td>
+                    <td>{{ item.total | currency}}</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <div class="last-table-container">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr class="table-primary">
+                    </tr>
+                </thead>
+                <tr>
+                    <td><span class="bold-text">Exportación:</span> No aplica</td>
+                    <td><span class="bold-text">Moneda:</span> Peso mexicano</td>
+                    <td><span class="bold-text">Sutotal:</span>{{invoice.subtotal | currency}} </td>
+                </tr>
+                <tr>
+                    <td><span class="bold-text">Método de Pago:</span> Pago en una sola exhibición</td>
+                    <td><span class="bold-text">Uso CFDI:</span> Gastos en general</td>
+                    <td><span class="bold-text">Impuestos:</span>{{invoice.taxes | currency}} </td>
+                </tr>
+                <tr>
+                    <td><span class="bold-text">Objeto Impuesto:</span> Sí, objeto impuesto</td>
+                    <td><span class="bold-text">Forma de Pago:</span> Tarjeta de crédito bancaria</td>
+                    <td class="bold-text"><span class="bold-text">Total:</span>{{invoice.total | currency}} </td>
+                </tr>
+            </table>
+
+            <div class="image-container">
+                <img src="assets/QR_code.png" alt="Código QR" />
+            </div>
+        </div>
+    </div>
+</div>

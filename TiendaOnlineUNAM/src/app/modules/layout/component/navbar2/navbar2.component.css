@@ -65,4 +65,29 @@
     margin-right: 16px;
 }
 
+.cart-button {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .cur{
+    cursor: pointer;
+}
   
