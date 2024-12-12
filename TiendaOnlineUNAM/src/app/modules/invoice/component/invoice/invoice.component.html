@@ -1,0 +1,65 @@
+<div class="body-content">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col col-letras">
+            <h4>Facturas</h4>
+          </div>
+        </div>
+      
+      </div>
+      <div class="card-body">     
+        
+        
+        @if(invoices.length == 0){
+          <div class="text-center table-empty">
+              <h4>No hay facturas registradas.</h4>
+          </div>
+        }@else {
+          <table class="table">
+            <thead class="thead-dark">
+              <tr class="table-primary">
+                <th scope="col" class="col-letras">No.</th>
+                <th scope="col" class="col-letras">Factura</th>
+                <th scope="col" class="col-letras">Monto</th>
+                <th scope="col" class="col-letras">Fecha de compra</th>
+                <th scope="col" class="col-letras">Más</th>
+              </tr>
+            </thead>
+            <tbody>
+                @for(invoice of invoices; track invoice.invoice_id; let i = $index ) {
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ invoice.invoice_id }}</td>
+                        <td>{{ invoice.total | currency: 'USD' }}</td>
+                        <td>{{ invoice.created_at | date: 'dd/MM/yyyy' }}</td>
+
+                        <td>
+                        <div class="dropdown">
+                          <!-- dots button  -->
+                          <button class="dropdown-button det" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                          </button>
+      
+                          <!-- menu options -->
+                          <div class="dropdown-menu cur" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item item" (click)="showInvoice(invoice.invoice_id)">
+                                <i class="ph ph-eye icon-text-ul"></i>Ver detalles
+                              </a>
+                          </div>
+                        </div>
+                      </td>
+                  </tr>
+              }
+              
+            </tbody>
+          </table>
+        }
+           
+        
+      </div>
+      <div class="card-footer text-end">
+        <small>{{ current_date | date: 'dd/MMM/yyyy, h:mm a' }}</small>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,28 @@
+.cardd{
+    margin-top: 10%;
+    max-width: 275px; 
+    margin: 0 auto;
+    box-shadow: 0px 2px 3px rgb(148, 146, 146); 
+    border-radius: 8px; 
+    transition: transform 0.2s ease; 
+}
+
+.cardd:hover {
+    transform: scale(1.02); 
+}
+
+.card{
+    margin-top: 2%;
+    padding: 30px;
+}
+
+.ret{
+    cursor: pointer;
+}
+
+.col-letras{
+   color:rgb(248, 98, 28);
+   font-size: 2rem;
+   margin-top: -15px; 
+   margin-bottom: 20px;
+}

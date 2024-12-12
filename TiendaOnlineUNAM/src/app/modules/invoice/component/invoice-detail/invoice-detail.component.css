@@ -1,0 +1,51 @@
+.ret{
+  cursor: pointer;
+}
+
+.col-ret{
+  color:rgb(248, 98, 28);
+  margin-top: 1%;
+}
+
+.card{
+  margin-top: 1%;
+}
+  
+.col-letras{
+    color:rgb(248, 98, 28);
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.header,
+.table {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.last-table-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.last-table-container .table {
+  width: 160%;
+}
+
+.image-container {
+  width: 35%; 
+  text-align: left;
+}
+
+.image-container img {
+  max-width: 70%;
+  height: auto;
+  padding: 4px;
+}
+  
+.table {
+  margin-top: 8px;
+}

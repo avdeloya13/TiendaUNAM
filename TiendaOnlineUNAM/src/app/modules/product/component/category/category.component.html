@@ -1,0 +1,134 @@
+<div class="body-content">
+  <div class="card">
+    <div class="card-header">
+      <div class="row d-flex align-items-center">
+        <div class="col col-letras">
+          <h4>Categorías</h4>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+            <i class="fa-solid fa-circle-plus"></i> Nueva Categoria
+          </button>
+        </div>
+      </div>
+    
+    </div>
+    <div class="card-body">  
+      
+      
+      @if(categories.length == 0){
+        <div class="text-center table-empty">
+            <h4>No hay categorías registradas.</h4>
+        </div>
+      }@else {
+        <!-- TABLA  -->
+      <table class="table">
+        <thead class="thead-dark">
+          <tr class="table-primary">
+            <th scope="col" class="col-letras">Category_Id</th>
+            <th scope="col" class="col-letras">Category</th>
+            <th scope="col" class="col-letras">Tag</th>
+            <th scope="col" class="col-letras">Estatus</th>
+            <th scope="col" class="col-letras">Más</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(category of categories; track category; ; ) {
+              <tr>
+                <td>{{ category.category_id }}</td>
+                <td>{{category.category}} </td>
+                <td>{{category.tag}} </td>
+                <td>
+                  <div class="td-status" [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
+                    {{ category.status == 0 ? "Inactivo" : "Activo" }}
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="dropdown-button det" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                    </button>
+                    <div class="dropdown-menu cur" aria-labelledby="dropdownMenuButton">
+                      <a *ngIf= "category.status == 1" class="dropdown-item disable-item" (click)="updateCategory(category)">
+                        <i class="ph ph-note-pencil icon-text-ul"></i> Editar
+                      </a>
+                      @if(category.status != 0){
+                        <a class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                          <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
+                        </a>
+                      }@else {
+                        <a class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                          <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                        </a>
+                      }
+                    </div>
+                  </div>
+                </td>
+              </tr>
+          }
+        </tbody>
+      </table>
+      }
+    </div>
+
+    <!-- MODAL  -->
+    <div class="modal fade" id="modalForm" tabindex="-1" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+          <!-- MODAL HEADER  -->
+          <div class="modal-header">
+            <h5 class="modal-title"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} Categoría</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- FORMULARIO PARA NUEVA CATEGORIA  -->
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <!-- MODAL BODY  -->
+            <div class="modal-body">
+
+              <!-- CATEGORIA  -->
+              <div class="mb-3">
+                <label for="category" class="form-label"> Categoria <span class="input-required">*</span></label>
+                <input type="text" class="form-control" formControlName="category" id="category"
+                  placeholder="Nombre de la Categoria" 
+                  [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}">
+
+                @if (form.controls['category'].errors && submitted){
+                <small class="invalid-feedback">Favor de ingresar un nombre de categoría válido</small>
+                }
+              </div>
+
+              <!-- TAG  -->
+              <div class="mb-3">
+                <label for="tag" class="form-label"> Tag <span class="input-required">*</span></label>
+                <input type="text" class="form-control" formControlName="tag" id="tag"
+                  placeholder="Tag de la categoria" 
+                  [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">
+
+                @if (form.controls['tag'].errors && submitted){
+                <small class="invalid-feedback">Favor de ingresar un tag válido</small>
+                }
+              </div>
+
+              <!-- MODAL FOOTER-->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-save"> {{categoryUpdate == 0 ? "Agregar" : "Actualizar"}} </button>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="card-footer text-end">
+      <small>{{ current_date | date: 'dd/MMM/yyyy, h:mm a' }}</small>
+    </div>
+  </div>
+</div>
+
