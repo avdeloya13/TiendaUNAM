@@ -1,6 +1,6 @@
 # TiendaUNAM
 
-TiendaUNAM es un proyecto creado en la asignatura Desarrollo Web Frontend que utiliza como framework Angular.
+Este es un proyecto creado con Angular como framework, CSS, HTML y TypeScript.
 
 * Ejecución: 
 El proyecto consume una api, para ello desde "api-dwf2025-1/api" escribimos en terminal: 
