@@ -11,13 +11,19 @@
 
 Una aplicación web de comercio electrónico que fue construida como una implementación Frontend simulando la operación completa de una tienda online.
 
-![Página de Inicio](assets/images/4.1.0.png)
-
 ## Características Clave
 
 - **Autenticación basada en roles:** Permite el inicio de sesión y registro de usuarios, segmentando dinámicamente las vistas, interfaces y permisos de la plataforma según el tipo de cuenta, ya sea **Administrador** o **Usuario**.
 
 * **Flujo de comercio electrónico fluido:** Permite a los usuarios añadir productos, gestionar las cantidades de estos en el carrito en tiempo real, eliminar productos y simular el proceso de compra.
+
+---
+
+## Interfaz
+
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img1.png)
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img2.png)
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img3.png)
 
 ---
 
