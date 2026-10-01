@@ -13,9 +13,9 @@ Una aplicación web de comercio electrónico que fue construida como una impleme
 
 ## Características Clave
 
-- **Autenticación basada en roles:** Permite el inicio de sesión y registro de usuarios, segmentando dinámicamente las vistas, interfaces y permisos de la plataforma según el tipo de cuenta, ya sea **Administrador** o **Usuario**.
+- **Autenticación basada en roles:** Permite el inicio de sesión y registro de usuarios, segmentando dinámicamente las vistas, interfaces y permisos de la plataforma según el tipo de cuenta, ya sea **Administrador** o **Cliente**.
 
-* **Flujo de comercio electrónico fluido:** Permite a los usuarios añadir productos, gestionar las cantidades de estos en el carrito en tiempo real, eliminar productos y simular el proceso de compra.
+* **Flujo de comercio electrónico fluido:** Permite a al administrador añadir productos, gestionar las cantidades de estos en el carrito en tiempo real y eliminar productos. Por la parte del cliente, el sistema simula el proceso de compra y facturación.
 
 ---
 
