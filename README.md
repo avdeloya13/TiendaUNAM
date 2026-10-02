@@ -9,7 +9,7 @@
 
 ---
 
-Una aplicación web de comercio electrónico que fue construida como una implementación Frontend simulando la operación completa de una tienda online.
+Una aplicación web de comercio electrónico que fue construida como una implementación Frontend simulando la operación completa de una tienda online. 
 
 ## Características Clave
 
@@ -21,9 +21,47 @@ Una aplicación web de comercio electrónico que fue construida como una impleme
 
 ## Interfaz
 
+El diseño de la interfaz y la arquitectura de pantallas de esta plataforma fue creado y maquetado completamente desde cero.
+
+### Página de inicio
+
+* Vista principal antes de que el usuario inicie sesión.
+
 ![Página de Inicio](TiendaOnlineUNAM/src/assets/img1.png)
 ![Página de Inicio](TiendaOnlineUNAM/src/assets/img2.png)
 ![Página de Inicio](TiendaOnlineUNAM/src/assets/img3.png)
+
+### Catálogo de productos
+
+* Se implementaron múltiples flujos de navegación para la localización de los productos: a través de la barra de búsqueda, en la clasificación estructurada por categorías de artículos y la exploración global que ocurre al presionar el botón **Explorar**.
+
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img4.png)
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img5.png)
+
+### Proceso de compra y facturación
+
+* Únicamente se le permite al cliente agregar artículos al carrito una vez que ha completado el proceso de autenticación e iniciado sesión.
+
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img6.png)
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img7.png)
+
+* El cliente puede agregar o eliminar artículos del carrito en tiempo real.
+
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img8.png)
+
+* El sistema procesa los elementos en el carrito al momento en que el usuario presiona **Comprar**.
+
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img9.png)
+
+* Al concluir la transacción, el módulo de facturación genera una factura electrónica consultable para el usuario en la sección de **Facturas**.
+
+
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img10.png)
+
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img11.png)
+
+![Página de Inicio](TiendaOnlineUNAM/src/assets/img12.png)
+
 
 ---
 
